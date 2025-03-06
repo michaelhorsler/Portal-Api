@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "engineering"
+name = "portalapi"
 version = "0.1.0"
-description = "Engineering app Bosch Rexroth"
+description = "Engineering Portal Api app Bosch Rexroth"
 authors = []
 
 [tool.poetry.dependencies]
