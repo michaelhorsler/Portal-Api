@@ -1,0 +1,11 @@
+.env
+.venv
+.git
+
+Dockerfile
+.vscode
+
+**/__pycache__
+
+.terraform
+.terraform.lock.hcl
