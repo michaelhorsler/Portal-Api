@@ -100,3 +100,60 @@ Press CTRL+C to quit
  * Debugger PIN: 113-666-066
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Tests
+
+Unit and Intgration tests will be included to prove operation via use of the Pytest module.
+Mocking can provide expected dbase responses.
+
+```
+poetry add pytest
+```
+This downloads pytest to the project and updates pyproject.toml with the new dependancy. Pytest scans for all tests / files with the names test_*.py or *_test.py.
+
+Configure pytest to look within the build folder to retrieve available tests within Visual Studio Code. All future tests will be scanned and added to the test list for execution.
+
+TDD (Test Driven Development) can now drive the future expansion of the project.
+
+Execute tests with the following command:
+```
+poetry run pytest
+```
+This will provide an output detailing the number of tests ran and their pass / fail results.
+
+## Utilising Docker for containerisation - build and deployment
+
+The Dockerfile in the root contains the full configuration for the container images to be built. This includes the base image to build upon, i.e. Python. Plus configuration options to build test and development environments taking into consideration different setups.
+The sensitive configuration variables are imported from the .env file from the command line. An external port is exposed for viewing the app via the browser on your localhost:
+```
+docker run --env-file .env --publish 127.0.0.1:5000:5000 portalapi:prod
+```
+A Multi-stage build has been implemented to invoke either Production, Development or Test modes within the TodoApp. Built via the following commands to create seperate container VM's: 
+
+```
+$ docker build --target development --tag portalapi:dev .
+$ docker build --target production --tag portalapi:prod .
+$ docker build --target test --tag portalapi:test .
+```
+The .dockerignore file lists the files to not be included in the Docker build. I.e. secrets files: .env.
+
+
+## Continuous Integration
+Github Actions is used to create and manage the Continuous Integration pipeline. Visibility of the success and failure of the deployment pipeline and tests are easily monitored to ensure the successful operation and deployment of the Engineering Portal Api application.
+ CI has many potential benefits, including reducing the risk of developers interfering with each others’ work and reducing the time it takes to get code to production.
+
+The CI pipeline is defined within the following pipeline:
+
+```
+portal-api-ci-pipeline.yml
+```
+ This is stored within the ```.github\workflows folder```.
+ E-mail notifications are setup within Github to alert Admin of failed CI pipeline deployments.
+
+
+Login to DockerHub locally, build image and push to Docker.io ready for use within Azure:
+```
+docker Login
+docker build --target production --tag michaelsminis/portalapi:prod .
+docker push michaelsminis/portalapi:prod
+```
