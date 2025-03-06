@@ -16,11 +16,11 @@ jobs:
         steps:
           - uses: actions/checkout@v2
           - run: docker build --target test --tag portalapi:test .
-          - run: docker run portalapi:test
           - name: Run Trivy vulnerability scanner
             uses: aquasecurity/trivy-action@0.28.0
             with:
-              image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+#              image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+              image-ref: 'docker.io/portalapi:latest'
               format: 'table'
               exit-code: '1'
               ignore-unfixed: true
@@ -28,5 +28,6 @@ jobs:
               severity: 'CRITICAL,HIGH'
 #        - run: docker scan portalapi:test
 #        - run: docker run --entrypoint poetry portalapi:test run safety check
+          - run: docker run portalapi:test
 
 
