@@ -157,3 +157,30 @@ docker Login
 docker build --target production --tag michaelsminis/portalapi:prod .
 docker push michaelsminis/portalapi:prod
 ```
+## Deploy Application to Azure
+Login to Azure Portal
+```
+az Login
+```
+Utilise account: michhors@bosch.com.
+
+Resource-Group: PortalApi - BDO (DevOps Assessment).
+
+Tenant: Bosch Group (DevOps Cohort)
+
+Create an Azure AppService Plan:
+```
+az appservice plan create --resource-group PortalApi -n eng-portalapp-serviceplan --sku B1 --is-linux
+```
+Create an Azure WebApp:
+```
+az webapp create --resource-group PortalApi --plan Eng-Portalapp-serviceplan --name eng-portalapp --deployment-container-image-name hub.docker.com/r/michaelsminis/portalapi:latest
+```
+Assign App Settings via env.json:
+```
+az webapp config appsettings set -g PortalApi -n eng-portalapp --settings @env.json
+```
+Add the Webhook path retrieved from Azure WebApp. Enter via Gitbash: (Note: Webhook needs updating once WebApp has been created.)
+```
+curl -dH -X POST "https://\$eng-portalapp:65EoGyeQrTPutRAYztZhNQwldwGGxaAJPlx6RgogkF8f2xWPHcbPHLK3jX8g@mrh-todoapp.scm.azurewebsites.net/api/registry/webhook"
+```
