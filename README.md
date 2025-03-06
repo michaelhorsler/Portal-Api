@@ -157,6 +157,11 @@ docker Login
 docker build --target production --tag michaelsminis/portalapi:prod .
 docker push michaelsminis/portalapi:prod
 ```
+Docker Image address:
+```
+https://hub.docker.com/r/michaelsminis/portalapi
+```
+
 ## Deploy Application to Azure
 Login to Azure Portal
 ```
@@ -174,13 +179,13 @@ az appservice plan create --resource-group PortalApi -n eng-portalapp-servicepla
 ```
 Create an Azure WebApp:
 ```
-az webapp create --resource-group PortalApi --plan Eng-Portalapp-serviceplan --name eng-portalapp --deployment-container-image-name hub.docker.com/r/michaelsminis/portalapi:latest
+az webapp create --resource-group PortalApi --plan eng-portalapp-serviceplan --name eng-portalapp --deployment-container-image-name hub.docker.com/r/michaelsminis/portalapi:latest
 ```
 Assign App Settings via env.json:
 ```
 az webapp config appsettings set -g PortalApi -n eng-portalapp --settings @env.json
 ```
-Add the Webhook path retrieved from Azure WebApp. Enter via Gitbash: (Note: Webhook needs updating once WebApp has been created.)
+Add the Webhook path retrieved from Azure WebApp / Deployment / Deployment Center. Enter via Gitbash: (Note: Webhook needs updating once WebApp has been created.)
 ```
-curl -dH -X POST "https://\$eng-portalapp:65EoGyeQrTPutRAYztZhNQwldwGGxaAJPlx6RgogkF8f2xWPHcbPHLK3jX8g@mrh-todoapp.scm.azurewebsites.net/api/registry/webhook"
+curl -dH -X POST "https://$eng-portalapp:QbkRAs6ZrkittTqXNsNXM9GMpSFx5L92YNHFdlgeWrxzJ8leDmTZxkYgdkSe@eng-portalapp.scm.azurewebsites.net/api/registry/webhook"
 ```
