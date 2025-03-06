@@ -22,13 +22,13 @@ jobs:
 #              image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
               image-ref: 'docker.io/library/portalapi:test'
               format: 'table'
-              exit-code: '0'
-#              exit-code: '1'
+#              exit-code: '0'
+              exit-code: '1'
               ignore-unfixed: true
               vuln-type: 'os,library'
               severity: 'CRITICAL,HIGH'
 #        - run: docker scan portalapi:test
-#        - run: docker run --entrypoint poetry portalapi:test run safety check
+          - run: docker run --entrypoint poetry portalapi:test run safety check
           - run: docker run portalapi:test
 
 
