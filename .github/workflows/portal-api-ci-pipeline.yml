@@ -16,6 +16,7 @@ jobs:
         steps:
         - uses: actions/checkout@v2
         - run: docker build --target test --tag portalapi:test .
-        - run: docker run --entrypoint poetry portalapi:test run safety check
+        - run: docker scan --entrypoint poetry portalapi:test
+#        - run: docker run --entrypoint poetry portalapi:test run safety check
         - run: docker run portalapi:test
 
