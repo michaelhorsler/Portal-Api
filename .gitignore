@@ -126,3 +126,5 @@ env.json
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
+
+README PROJECT.md

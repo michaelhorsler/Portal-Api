@@ -8,7 +8,7 @@ DevOps Cohort - EPA Assessment Project
 
 Github repository:  https://github.com/michaelhorsler/Portal-Api.git
 
-Github Actions CI Pipeline: https://github.com/michaelhorsler/Portal-Api/actions/workflows/portal-api-ci-pipeline.yml
+Github Actions CICD Pipeline: https://github.com/michaelhorsler/Portal-Api/actions/workflows/portal-api-ci-pipeline.yml
 
 Docker Hub: https://hub.docker.com/repositories/michaelsminis
 
@@ -19,7 +19,13 @@ Login: (username)@bosch.com
 Applied for Azure 60 day Sandbox license for project.
 Prove if operation is suffiient or upgrade to Development license.
 
-Portal-Api Resource Group: TBA. Request to be submitted.
+```
+Portal-Api Resource Group: PortalApi
+Azure Container Registry: portalapicontainer
+Azure Web App: eng-portalapp
+Azure Web App Service Plan: eng-portalapp-serviceplan
+```
+Azure domain: https://eng-portalapp.azurewebsites.net
 
 ## Setup new project.
 Create new repository within Github. i.e. Portal-Api.Git.
@@ -198,3 +204,9 @@ curl -dH -X POST "https://$eng-portalapp:QbkRAs6ZrkittTqXNsNXM9GMpSFx5L92YNHFdlg
 ```
 Added Webhook to Azure / portalapicontainer / Services / Webhooks
 To Update security on the container registry and allow admin access: portalapicontainer / Settings / Access Keys. Check Admin user for portalapicontainer username.
+
+## Continuous Deployment
+
+Advancing the CI pipeline to include CD (Continuous Delivery / Deployment) I am using Github Actions to publish the Production image direct to the Azure Container Registry and invoke the Azure Webhook to trigger the download of the latest image container onto the live application. Secrets are added to the Github repository (Portal-Api) Settings / Secrets and variables / Actions.
+
+These include the Azure Webhook, Azure credentials, Registry username & Password, Resource Group in use.
