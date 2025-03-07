@@ -163,10 +163,17 @@ https://hub.docker.com/r/michaelsminis/portalapi
 ```
 
 ## Deploy Application to Azure
-Login to Azure Portal
+Login to Azure Portal and Azure Container Registry (portalapicontainer)
 ```
 az Login
+az acr login --name portalapicontainer
+
+docker build --target production --tag portalapicontainer.azurecr.io/portalapi:prod .
+docker push portalapicontainer.azurecr.io/portalapi:prod
 ```
+Pushed Azure container located in: portalapicontainer / Services / Repositories
+
+
 Utilise account: michhors@bosch.com.
 
 Resource-Group: PortalApi - BDO (DevOps Assessment).
@@ -189,3 +196,5 @@ Add the Webhook path retrieved from Azure WebApp / Deployment / Deployment Cente
 ```
 curl -dH -X POST "https://$eng-portalapp:QbkRAs6ZrkittTqXNsNXM9GMpSFx5L92YNHFdlgeWrxzJ8leDmTZxkYgdkSe@eng-portalapp.scm.azurewebsites.net/api/registry/webhook"
 ```
+Added Webhook to Azure / portalapicontainer / Services / Webhooks
+To Update security on the container registry and allow admin access: portalapicontainer / Settings / Access Keys. Check Admin user for portalapicontainer username.
