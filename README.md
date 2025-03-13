@@ -19,16 +19,17 @@ Login: (username)@bosch.com
 Applied for Azure 60 day Sandbox license for project.
 Prove if operation is suffiient or upgrade to Development license.
 
+Azure details:
 ```
 Portal-Api Resource Group: PortalApi
 Azure Container Registry: portalapicontainer
 Azure Web App: eng-portalapp
 Azure Web App Service Plan: eng-portalapp-serviceplan
 ```
-Azure domain: https://eng-portalapp.azurewebsites.net
+Azure published app domain: https://eng-portalapp.azurewebsites.net
 
 ## Setup new project.
-Create new repository within Github. i.e. Portal-Api.Git.
+Create new repository within Github. i.e. portal-api.git.
 
 https://github.com/michaelhorsler/portal-api.git
 
@@ -210,3 +211,9 @@ To Update security on the container registry and allow admin access: portalapico
 Advancing the CI pipeline to include CD (Continuous Delivery / Deployment) I am using Github Actions to publish the Production image direct to the Azure Container Registry and invoke the Azure Webhook to trigger the download of the latest image container onto the live application. Secrets are added to the Github repository (Portal-Api) Settings / Secrets and variables / Actions.
 
 These include the Azure Webhook, Azure credentials, Registry username & Password, Resource Group in use.
+
+
+
+## To-do
+
+Add metrics and monitoring against Serviceplan in Azure.
