@@ -213,9 +213,29 @@ Advancing the CI pipeline to include CD (Continuous Delivery / Deployment) I am 
 These include the Azure Webhook, Azure credentials, Registry username & Password, Resource Group in use.
 The Azure credentials reflect the Admin account enabled within the Azure Container Registry with a unique access token to allow publication of containers to the ACR via the CICD pipeline creating a full CICD pipeline to deployment.
 
+# Cosmos DB
 
+## Setting up the MongoDb Integration
 
-## To-do
+Pre-requisite: This app uses a Mongo Database for storing API request details and logging information. The database is hosted within the Azure engportalapi resource group.
+```
+secret.AZURE_COSMOS_DB_CLUSTER
+```
+Therefore a Mongodb database and connection string is required. These are referenced by Global Variables within `.env` - 
+  MONGO_CONN_STRING, MONGODB.
+These are required to achieve correct operation.
+
+## Data Encryption in Azure Cosmos DB
+
+All Azure Cosmos DB data is encrypted in transit (over the network) and at rest (nonvolatile storage), providing end-to-end encryption of our App data.
+
+# To-do
+
+JIRA board created to monitor tasks and progress.
+
+Cosmos Db added to Azure under free tier. Note: public access enabled but firewall rules need configuring to allow IP access.
+
+Add Jason to Github repository to allow for pull-requests on deploying modifications. - Continuous Delivery and approved deployment.
 
 Add metrics and monitoring against Serviceplan in Azure.
 
@@ -227,7 +247,7 @@ Review KSP's to hit and update accordingly.
 
 Generate documentation to reflect build process during build.
 
-Log hours within EPA documentation?
+Log hours within EPA documentation (Powerpoint docs - Page 9)
 
 Review final EPA documentation to ensure all processes are being hit and recorded as required.
 
