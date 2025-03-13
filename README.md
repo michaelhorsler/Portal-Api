@@ -240,7 +240,6 @@ Create Unit and Inegration tests to suit JIRA requirements.
 Add Slack webhook for notifications?
 ```
 Slack Webhook:
-https://hooks.slack.com/services/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
 
     - name: Send Github Slack message
       id: slack
