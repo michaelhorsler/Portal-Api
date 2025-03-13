@@ -2,8 +2,8 @@ FROM python:buster as base
 
 # Perform common operations, dependency installation etc...
 RUN pip install poetry
-RUN pip uninstall -y setuptools
-RUN pip install setuptools==39.1.0
+# RUN pip uninstall -y setuptools
+# RUN pip install setuptools==39.1.0
 WORKDIR /app
 COPY poetry.toml ./
 COPY pyproject.toml poetry.lock ./
