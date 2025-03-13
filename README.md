@@ -211,6 +211,7 @@ To Update security on the container registry and allow admin access: portalapico
 Advancing the CI pipeline to include CD (Continuous Delivery / Deployment) I am using Github Actions to publish the Production image direct to the Azure Container Registry and invoke the Azure Webhook to trigger the download of the latest image container onto the live application. Secrets are added to the Github repository (Portal-Api) Settings / Secrets and variables / Actions.
 
 These include the Azure Webhook, Azure credentials, Registry username & Password, Resource Group in use.
+The Azure credentials reflect the Admin account enabled within the Azure Container Registry with a unique access token to allow publication of containers to the ACR via the CICD pipeline.
 
 
 

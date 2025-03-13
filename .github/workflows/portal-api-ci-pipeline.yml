@@ -41,12 +41,13 @@ jobs:
           - run: echo Publishing to Azure!
           -
             name: Login to Azure Container Portal
+# Login to ACR using Admin account and access token stored within ACR.
+# Secrets stored within Github Actions Secrets repository.`
             uses: azure/docker-login@v2
             with:
                 login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
                 username: ${{ secrets.REGISTRY_USERNAME }}
                 password: ${{ secrets.REGISTRY_PASSWORD }}     
-
           -
             name: Build and Push Production to Azure Container Portal
             uses: actions/checkout@v4
