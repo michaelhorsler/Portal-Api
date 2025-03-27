@@ -1,5 +1,6 @@
 import os
 import pymongo
+import ctypes
 from portalapi.data.item import Item
 
 def get_post_collection():
@@ -13,20 +14,26 @@ def get_post_collection():
     posts = db.posts
     return posts
 
-def add_mongodata():
+def Mbox(title, text, style):
+    return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+
+def add_mongodata(customer,salesorder):
     posts = get_post_collection()
     post = {
-        "Customer": "Bills Hyd",
-        "Sales_Order": "12345",
+        "Customer": customer,
+        "Sales_Order": salesorder,
     }
     posts.insert_one(post).inserted_id
 
 def get_items():
     posts = get_post_collection()
     items=[]
- #   for post in posts.find({"status": "To Do"}):
     for post in posts.find():
         item = Item.from_mongodb(post)
         items.append(item)
-    #print (items)
     return items
+
+def apirequest(customer,salesorder):
+    Mbox('API Request', customer, 1)
+    Mbox('API Request', salesorder, 1)
+    add_mongodata(customer,salesorder)

@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from portalapi.data.mongo_data import add_mongodata, get_items
+from portalapi.data.mongo_data import add_mongodata, apirequest, get_items
 from portalapi.view_model import viewmodel
 
 def create_app():
@@ -14,6 +14,14 @@ def create_app():
     @app.route('/add-data', methods=["POST"])
     def add_data():
         add_mongodata()
+        return redirect('/')
+
+    @app.route('/api')
+    def api_request():
+        customer = request.args.get('customer', default = '*', type = str)
+        salesorder = request.args.get('salesorder', default = '*', type = str)
+        # new_customer = request.form.get('customer')
+        apirequest(customer,salesorder)
         return redirect('/')
 
     return app

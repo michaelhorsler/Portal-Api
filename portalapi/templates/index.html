@@ -9,8 +9,15 @@
 
   <form action="add-data" method="post">
     <label for="name">Post test data: </label>
-    <input type="text" name="title" required />
+    <input type="text" name="title" />
     <input type="submit" value="Submit Test Data" />
+  </form>
+
+  <form action="api?customer=c&salesorder=b">
+    <label for="name">API Call: </label>
+    <input type="text" name="customer" />
+    <input type="text" name="salesorder" />
+    <input type="submit" value="Test API Call" />
   </form>
 
   <div class="row">
