@@ -23,7 +23,7 @@ def test_mock_index_page(client):
 
     posts = get_post_collection()
     post = {
-            "salesorder": "typical",
+            "Sales_Order": "typical",
             "Customer": "generic",
         }
     posts.insert_one(post).inserted_id
