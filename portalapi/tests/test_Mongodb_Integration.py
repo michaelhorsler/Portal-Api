@@ -7,7 +7,7 @@ from portalapi.data.mongo_data import get_post_collection
 from flask_dance.consumer.storage import MemoryStorage
 
 @pytest.fixture
-def client(monkeypatch):
+def client():
     file_path = find_dotenv('.env.test')
     load_dotenv(file_path, override=True)
 
