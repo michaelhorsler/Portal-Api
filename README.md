@@ -28,6 +28,11 @@ Azure Web App Service Plan: eng-portalapp-serviceplan
 ```
 Azure published app domain: https://eng-portalapp.azurewebsites.net
 
+JIRA Board for Project:
+```
+https://boschrexroth-team-vesb1xts.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog
+```
+
 ## Setup new project.
 Create new repository within Github. i.e. portal-api.git.
 
@@ -241,19 +246,23 @@ Add metrics and monitoring against Serviceplan in Azure.
 
 Add Kubernetes scaling to account for spikes in demand. Demonstrate scaling in use by way of simulated action? Temporary button within portal to provide multiple requests. View impact on Azure WebApp when it constant operation.
 
+Add Terraform to manage Infrasturcture as code. (IaC)
+
 Strip dependancies from VM. 
 
-Review KSP's to hit and update accordingly.
+Review KSP's to hit and update accordingly. A4D Work-Based Project evidence matrix.
 
 Generate documentation to reflect build process during build.
 
 Log hours within EPA documentation (Powerpoint docs - Page 9)
 
-Review final EPA documentation to ensure all processes are being hit and recorded as required.
+Review final EPA documentation to ensure all processes are being hit and recorded as required. Evidence matrix.
 
 Generate JIRA board to highlight build requirements and milestones. Reference for documentation.
 
 Create build stories.
+
+Create acceptance criteria for project. Must have's, nice to have's. Create additional requirement for Distinction. (Report changes in 2 directions within APP. Back update Portal with assigned information?? Automated project update to save referencing time.)
 
 Create Unit and Inegration tests to suit JIRA requirements.
 
