@@ -13,10 +13,11 @@
     <input type="submit" value="Submit Test Data" />
   </form>
 
-  <form action="api?customer=c&salesorder=b">
+  <form action="api?customer=c&salesorder=b&engineer=d">
     <label for="name">API Call: </label>
     <input type="text" name="customer" />
     <input type="text" name="salesorder" />
+    <input type="text" name="engineer" />
     <input type="submit" value="Test API Call" />
   </form>
 
@@ -26,7 +27,7 @@
       <ul class="list-group mb-4">
         <h2>Received API Calls</h2>
         {% for item in view_model.items %}  
-          <li>{{ item.customer }} - {{item.sales_order}}</li>   
+          <li>{{ item.customer }} - {{item.sales_order}} - {{item.engineer}}</li>   
         {% endfor %}
       </ul>
 

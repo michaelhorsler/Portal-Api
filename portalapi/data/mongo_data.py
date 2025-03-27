@@ -17,11 +17,12 @@ def get_post_collection():
 def Mbox(title, text, style):
     return ctypes.windll.user32.MessageBoxW(0, text, title, style)
 
-def add_mongodata(customer,salesorder):
+def add_mongodata(customer,salesorder,engineer):
     posts = get_post_collection()
     post = {
         "Customer": customer,
         "Sales_Order": salesorder,
+        "Engineer": engineer
     }
     posts.insert_one(post).inserted_id
 
@@ -33,7 +34,8 @@ def get_items():
         items.append(item)
     return items
 
-def apirequest(customer,salesorder):
+def apirequest(customer,salesorder,engineer):
+# Note: Message box does not display when hosted on Azure. Causes error.
 #    Mbox('API Request', customer, 1)
 #    Mbox('API Request', salesorder, 1)
-    add_mongodata(customer,salesorder)
+    add_mongodata(customer,salesorder,engineer)

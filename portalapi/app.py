@@ -20,8 +20,9 @@ def create_app():
     def api_request():
         customer = request.args.get('customer', default = '*', type = str)
         salesorder = request.args.get('salesorder', default = '*', type = str)
+        engineer = request.args.get('engineer', default = '*', type = str)
         # new_customer = request.form.get('customer')
-        apirequest(customer,salesorder)
+        apirequest(customer,salesorder,engineer)
         return redirect('/')
 
     return app
