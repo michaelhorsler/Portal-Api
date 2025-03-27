@@ -34,6 +34,6 @@ def get_items():
     return items
 
 def apirequest(customer,salesorder):
-    Mbox('API Request', customer, 1)
-    Mbox('API Request', salesorder, 1)
+#    Mbox('API Request', customer, 1)
+#    Mbox('API Request', salesorder, 1)
     add_mongodata(customer,salesorder)
