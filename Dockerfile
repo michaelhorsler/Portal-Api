@@ -1,4 +1,4 @@
-FROM python:buster as base
+FROM python:buster AS base
 
 # Perform common operations, dependency installation etc...
 RUN pip install poetry
@@ -13,16 +13,16 @@ ENV WEBSITES_PORT=5000
 EXPOSE ${WEBSITES_PORT}
 COPY . .
 
-FROM base as test
+FROM base AS test
 #Configure for test
 COPY .env.test .
 ENTRYPOINT poetry run pytest
 
-FROM base as production
+FROM base AS production
 # Configure for production
 ENTRYPOINT poetry run flask run --host=0.0.0.0
 
-FROM base as development
+FROM base AS development
 # Configure for local development
 ENV FLASK_ENV=development
 ENTRYPOINT poetry run flask run --host=0.0.0.0
