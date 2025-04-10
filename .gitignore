@@ -127,5 +127,6 @@ terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
 secrets.tfvars
+.tfvars
 
 README PROJECT.md

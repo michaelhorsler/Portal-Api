@@ -11,14 +11,14 @@ variable "FLASK_APP" {
 variable "FLASK_DEBUG" {
   description = "State of Flask debug mode"
   type        = string
-  default     = "false"
+  default     = "true"
 }
-variable "MONGO_CONN_STRING" {
+variable "MONGODBASE_CONN_STRING" {
   description = "Mongodb Connection String"
   type        = string
   sensitive   = true
 }
-variable "MONGODB" {
+variable "MONGODBASE" {
   description = "Mongodb Name"
   type        = string
   default     = "engportalapidb"
@@ -32,4 +32,19 @@ variable "WEBSITES_PORT" {
   description = "Website Port"
   type        = string
   default     = "5000"
+}
+variable "DOCKER_SERVER_USR" {
+  description = "Username for Azure Container Registry"
+  type        = string
+  sensitive   = true
+}
+variable "DOCKER_SERVER_PWD" {
+  description = "Password for Azure Container Registry"
+  type        = string
+  sensitive   = true
+}
+variable "container_registry_name" {
+  type        = string
+  description = "Azure Container Registry Name"
+  default     = "portalapicontainer"
 }
