@@ -1,4 +1,4 @@
-FROM python:buster AS base
+FROM python:alpine AS base
 
 # Perform common operations, dependency installation etc...
 RUN pip install poetry

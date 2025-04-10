@@ -180,8 +180,8 @@ Login to Azure Portal and Azure Container Registry (portalapicontainer)
 az Login
 az acr login --name portalapicontainer
 
-docker build --target production --tag portalapicontainer.azurecr.io/portalapi:prod .
-docker push portalapicontainer.azurecr.io/portalapi:prod
+docker build --target production --tag portalapicontainer.azurecr.io/portalapi:latest .
+docker push portalapicontainer.azurecr.io/portalapi:latest
 ```
 Pushed Azure container located in: portalapicontainer / Services / Repositories
 
@@ -198,7 +198,7 @@ az appservice plan create --resource-group PortalApi -n eng-portalapp-servicepla
 ```
 Create an Azure WebApp:
 ```
-az webapp create --resource-group PortalApi --plan eng-portalapp-serviceplan --name eng-portalapp --deployment-container-image-name hub.docker.com/r/michaelsminis/portalapi:latest
+az webapp create --resource-group PortalApi --plan eng-portalapp-serviceplan --name eng-portalapp --deployment-container-image-name portalapicontainer.azurecr.io/portalapi:latest
 ```
 Assign App Settings via env.json:
 ```
@@ -233,6 +233,33 @@ These are required to achieve correct operation.
 ## Data Encryption in Azure Cosmos DB
 
 All Azure Cosmos DB data is encrypted in transit (over the network) and at rest (nonvolatile storage), providing end-to-end encryption of our App data.
+
+# Terraform Installation - Cloud Infrastructure as Code (IaC)
+
+Binary installed into the working path.
+Create main.tf with basic Azure resource data, variables stored within variables.tf and secrets protected in secrets.tfvars then initialise Terraform for project by:
+```
+az login
+terraform init
+```
+In order to provide access for Terraform to provision resources within Azure, a Principle Service Account has been created by registering the Engineering Portal Api App with Microsoft EntraID and creating an App entry within the Bosch Active Directory (AD). A secret key and ID were created and assigned to a Contributor role for full provisioning.
+
+Secret values have been secured within the secrets.tfvars file and need to be applied to the plan and application to allow logging into the Azure resources via the Principle Service Account.
+To run and check terraform plan run:
+```
+terraform plan -var-file="secrets.tfvars"
+terraform apply -var-file="secrets.tfvars"
+```
+If unable to execute and returns error code with subscription, check for any updates to the Azure Cli installation:
+```
+az extension --help
+```
+Install updates and log back into Azure Cli with az login.
+Auto Upgrade can be configured with:
+```
+az config set auto-upgrade.enable=yes
+```
+
 
 # To-do
 

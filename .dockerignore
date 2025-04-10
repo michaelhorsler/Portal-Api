@@ -8,4 +8,5 @@ Dockerfile
 **/__pycache__
 
 .terraform
+terraform.tfvars
 .terraform.lock.hcl
