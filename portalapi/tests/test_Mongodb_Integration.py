@@ -25,6 +25,7 @@ def test_mock_index_page(client):
     post = {
             "Sales_Order": "typical",
             "Customer": "generic",
+            "Engineer": "Bob",
         }
     posts.insert_one(post).inserted_id
 
