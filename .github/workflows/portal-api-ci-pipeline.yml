@@ -56,9 +56,14 @@ jobs:
           - run: docker push portalapicontainer.azurecr.io/portalapi:latest
   # Trigger Terraform to build Azrue IaC. 
           - run: echo Terraform to build Azure Iac
-          -
-            name: Terraform
-            uses: hashicorp/setup-terraform@v3
+  #        -
+  #          name: Terraform
+  #          uses: hashicorp/setup-terraform@v3
+  #          with:
+  #            client_id: ${{ secrets.ARM_CLIENT_ID }}
+  #            subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  #            tenant_id: ${{ secrets.ARM_TENANT_ID }} 
+  #            client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
           - run: terraform init
           - run: terraform apply -auto-approve
           - run: curl -dH -X POST "$(terraform output -raw webhook_url)"
