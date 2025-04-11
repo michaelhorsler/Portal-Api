@@ -5,6 +5,12 @@ terraform {
             version = "~>4.0"
         }
     }
+    backend "azurerm" {
+        resource_group_name  = "PortalApi"
+        storage_account_name = "portalapistorageacc"
+        container_name       = "portalapiblob"
+        key                  = "terraform.tfstate"
+    }
 }
 
 provider "azurerm" {
