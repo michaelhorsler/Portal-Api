@@ -274,6 +274,17 @@ az storage account create --resource-group PortalApi --name portalapistorageacc 
 Create Blob Container via cli:
 az storage container create --name portalapiblob --account-name portalapistorageacc
 ```
+
+## Add Terraform to CICD Pipeline
+
+To facilitate trusted login for Terraform, the Microsoft Entra Service Principle detailsa are added securely to the CICD Secrets within Github Actions.
+The following secrets are required:
+```
+ARM_CLIENT_ID
+ARM_TENANT_ID
+ARM_SUBSCRIPTION_ID
+ARM_CLIENT_SECRET
+```
 # To-do
 
 JIRA board created to monitor tasks and progress.
