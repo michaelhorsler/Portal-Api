@@ -53,5 +53,10 @@ jobs:
             name: Build and Push Production to Azure Container Portal
             uses: actions/checkout@v4
           - run: docker build --target production --tag portalapicontainer.azurecr.io/portalapi:latest .
-          - run: docker push portalapicontainer.azurecr.io/portalapi:latest            
+          - run: docker push portalapicontainer.azurecr.io/portalapi:latest
+# Trigger Terraform to build Azrue IaC. 
+          - run: terraform init
+          - run: terraform apply -auto-approve
+          - run: curl -dH -X POST "$(terraform output -raw webhook_url)"
+
 

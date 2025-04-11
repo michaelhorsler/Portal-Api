@@ -53,6 +53,47 @@ resource "azurerm_linux_web_app" "main" {
         "MONGODBASE" = var.MONGODBASE
         "SECRET_KEY" = var.SECRET_KEY
         "WEBSITES_PORT" = var.WEBSITES_PORT
-        WEBSITES_ENABLE_APP_SERVICE_STORAGE = false
+        "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = false
     }
+}
+
+
+resource "azurerm_cosmosdb_account" "main" {
+    name                  = "engportalapidbacc"
+    location              = data.azurerm_resource_group.main.location
+    resource_group_name   = data.azurerm_resource_group.main.name
+    offer_type            = "Standard"
+    kind                  = "MongoDB"
+    mongo_server_version  = "4.2"
+        lifecycle { prevent_destroy = true }
+
+    capabilities { 
+        name = "EnableMongo"
+    }
+
+    capabilities {
+        name = "EnableServerless"
+    }
+
+    consistency_policy {
+        consistency_level = "Strong"
+    }
+
+    geo_location {
+        location          = "uk south"
+        failover_priority = 0
+    }
+
+}
+
+
+data "azurerm_cosmosdb_account" "main" {
+  name                = "engportalapidbacc"
+  resource_group_name = "PortalApi"
+}
+
+resource "azurerm_cosmosdb_mongo_database" "main" {
+  name                = "engportalapidbacc"
+  resource_group_name = data.azurerm_cosmosdb_account.main.resource_group_name
+  account_name        = data.azurerm_cosmosdb_account.main.name
 }

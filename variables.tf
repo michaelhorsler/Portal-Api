@@ -21,7 +21,7 @@ variable "MONGODBASE_CONN_STRING" {
 variable "MONGODBASE" {
   description = "Mongodb Name"
   type        = string
-  default     = "engportalapidb"
+  sensitive   = true
 }
 variable "SECRET_KEY" {
   description = "Cookie Variable"
