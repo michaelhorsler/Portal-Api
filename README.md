@@ -259,8 +259,21 @@ Auto Upgrade can be configured with:
 ```
 az config set auto-upgrade.enable=yes
 ```
+## Transfer Terraform State to Azure Blob Storage
 
+Transferring Terraform state from local file to Azure Blob Storage requires a Blob Storage Container to be created:
+```
+Either via Azure Portal:
+Resource Group: PortalApi
+Blob Storage: portalapistorageacc
+Blob Container: portalapiblob
 
+Via cli:
+az storage account create --resource-group PortalApi --name portalapistorageacc --sku Standard_LRS --encryption-services blob
+
+Create Blob Container via cli:
+az storage container create --name portalapiblob --account-name portalapistorageacc
+```
 # To-do
 
 JIRA board created to monitor tasks and progress.
