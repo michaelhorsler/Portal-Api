@@ -71,7 +71,7 @@ jobs:
   #            client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
   #        - run: az login
           - run: terraform init
-          - run: terraform apply -auto-approve
+          - run: terraform apply -auto-approve -lock=false
           - run: curl -dH -X POST "$(terraform output -raw webhook_url)"
 
 
