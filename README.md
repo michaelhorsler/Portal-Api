@@ -277,13 +277,10 @@ az storage container create --name portalapiblob --account-name portalapistorage
 
 ## Add Terraform to CICD Pipeline
 
-To facilitate trusted login for Terraform, the Microsoft Entra Service Principle detailsa are added securely to the CICD Secrets within Github Actions.
+To facilitate trusted login for Terraform, the Microsoft Entra Service Principle detailsa are added securely to the CICD Secrets within Github Actions as a JSON set. This equates to ClientID, ClientSecret, TenantID, SubscriptionID.
 The following secrets are required:
 ```
-ARM_CLIENT_ID
-ARM_TENANT_ID
-ARM_SUBSCRIPTION_ID
-ARM_CLIENT_SECRET
+AZURE_CREDENTIALS
 ```
 # To-do
 
