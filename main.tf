@@ -18,7 +18,7 @@ provider "azurerm" {
     subscription_id = "50ef3721-085f-48dd-a4f1-d17b05980663"
     tenant_id       = "0ae51e19-07c8-4e4b-bb6d-648ee58410f4"
     client_id       = "70bd1492-7521-4c03-bdaf-2f7be682acac"
-    client_secret   = ${{ secrets.TF_VAR_SERVICE_PRINCIPLE_CLIENT_SECRET }}
+    client_secret   = TF_VAR_SERVICE_PRINCIPLE_CLIENT_SECRET
 }
 data "azurerm_resource_group" "main" {
     name     = "PortalApi"
@@ -48,17 +48,17 @@ resource "azurerm_linux_web_app" "main" {
         application_stack {
             docker_image_name = "portalapi:latest"
             docker_registry_url = "https://portalapicontainer.azurecr.io"  
-            docker_registry_username = ${{ secrets.TF_VAR_DOCKER_SERVER_USR }}
-            docker_registry_password = ${{ secrets.TF_VAR_DOCKER_SERVER_PWD }}
+            docker_registry_username = TF_VAR_DOCKER_SERVER_USR
+            docker_registry_password = TF_VAR_DOCKER_SERVER_PWD
         }
     }
     app_settings = {
-        "FLASK_APP" = ${{ variables.FLASK_APP }}
-        "FLASK_DEBUG" = ${{ variables.FLASK_DEBUG }}
-        "MONGODBASE_CONN_STRING" = ${{ secrets.TF_VAR_MONGODBASE_CONN_STRING }}
-        "MONGODBASE" = ${{ secrets.TF_VAR_MONGODBASE }}
-        "SECRET_KEY" = ${{ variables.SECRET_KEY }}
-        "WEBSITES_PORT" = ${{ variables.WEBSITES_PORT }}
+        "FLASK_APP" = TF_VAR_FLASK_APP
+        "FLASK_DEBUG" = TF_VAR_FLASK_DEBUG
+        "MONGODBASE_CONN_STRING" = TF_VAR_MONGODBASE_CONN_STRING
+        "MONGODBASE" = TF_VAR_MONGODBASE
+        "SECRET_KEY" = TF_VAR_SECRET_KEY
+        "WEBSITES_PORT" = TF_VAR_WEBSITES_PORT
         "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = false
     }
 }
