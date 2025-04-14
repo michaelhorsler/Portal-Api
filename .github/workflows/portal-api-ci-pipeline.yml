@@ -77,10 +77,10 @@ jobs:
               TF_VAR_DOCKER_SERVER_PWD: ${{ secrets.TF_VAR_DOCKER_SERVER_PWD }}
               TF_VAR_MONGODBASE_CONN_STRING: ${{ secrets.TF_VAR_MONGODBASE_CONN_STRING }}
               TF_VAR_MONGODBASE: ${{ secrets.TF_VAR_MONGODBASE }}
-              TF_VAR_FLASK_APP: ${{ variables.FLASK_APP }}
-              TF_VAR_FLASK_DEBUG: ${{ variables.FLASK_DEBUG }}
-              TF_VAR_SECRET_KEY: ${{ variables.SECRET_KEY }}
-              TF_VAR_WEBSITES_PORT: ${{ variables.WEBSITES_PORT }}
+              TF_VAR_FLASK_APP: ${{ secrets.FLASK_APP }}
+              TF_VAR_FLASK_DEBUG: ${{ secrets.FLASK_DEBUG }}
+              TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+              TF_VAR_WEBSITES_PORT: ${{ secrets.WEBSITES_PORT }}
           - run: curl -dH -X POST "$(terraform output -raw webhook_url)"
 
 
