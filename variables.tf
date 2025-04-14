@@ -6,7 +6,7 @@ variable "SERVICE_PRINCIPLE_CLIENT_SECRET" {
 variable "FLASK_APP" {
   description = "Path for Flask App"
   type        = string
-  default     = "portalapi/app"
+  sensitive   = true
 }
 variable "FLASK_DEBUG" {
   description = "State of Flask debug mode"
@@ -26,12 +26,12 @@ variable "MONGODBASE" {
 variable "SECRET_KEY" {
   description = "Cookie Variable"
   type        = string
-  default     = "secret-key"
+  sensitive   = true
 }
 variable "WEBSITES_PORT" {
   description = "Website Port"
   type        = string
-  default     = "5000"
+  sensitive   = true
 }
 variable "DOCKER_SERVER_USR" {
   description = "Username for Azure Container Registry"
