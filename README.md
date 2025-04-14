@@ -14,6 +14,8 @@ Docker Hub: https://hub.docker.com/repositories/michaelsminis
 
 Azure Portal:  https://portal.azure.com/#home 
 
+Azure Key Vault: engportalkeyvault
+
 Login: (username)@bosch.com
 
 Applied for Azure 60 day Sandbox license for project.
