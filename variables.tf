@@ -11,7 +11,7 @@ variable "FLASK_APP" {
 variable "FLASK_DEBUG" {
   description = "State of Flask debug mode"
   type        = string
-  default     = "true"
+  sensitive   = true
 }
 variable "MONGODBASE_CONN_STRING" {
   description = "Mongodb Connection String"
