@@ -321,12 +321,14 @@ kubectl get nodes - List cluster nodes (Set as 2 in deployment)
 kubectl get pods	- List cluster pods
 kubectl logs my-pod    - Retrieve the logs for a Pod called my-pod
 kubectl describe pod my-pod  - Retrieve a description, including an error history, for my-pod 
+kubectl delete pod <old-pod-name> --grace-period=0 --force  - force delete of pod
 ```
 Add / upgrade latest version of k8s extension:
 ```
 az extension add --upgrade --name k8s-extension
 ```
 
+If pods fail to start from CICD, then interrogate logs and describe. If necessary delete pod to force re-creation.
 
 # To-do
 
