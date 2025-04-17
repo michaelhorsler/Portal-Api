@@ -16,13 +16,13 @@ COPY . .
 FROM base AS test
 #Configure for test
 COPY .env.test .
-ENTRYPOINT poetry run pytest
+ENTRYPOINT ["poetry", "run", "pytest"]
 
 FROM base AS production
 # Configure for production
-ENTRYPOINT poetry run flask run --host=0.0.0.0
+ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
 
 FROM base AS development
 # Configure for local development
 ENV FLASK_ENV=development
-ENTRYPOINT poetry run flask run --host=0.0.0.0
+ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]

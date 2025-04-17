@@ -1,0 +1,13 @@
+# service.yaml - local service test with MiniKube
+kind: Service
+apiVersion: v1
+metadata:
+  name: engportalapi
+spec:
+  type: NodePort
+  selector:
+    app: engportalapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

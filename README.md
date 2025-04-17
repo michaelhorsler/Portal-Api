@@ -14,8 +14,6 @@ Docker Hub: https://hub.docker.com/repositories/michaelsminis
 
 Azure Portal:  https://portal.azure.com/#home 
 
-Azure Key Vault: engportalkeyvault
-
 Login: (username)@bosch.com
 
 Applied for Azure 60 day Sandbox license for project.
@@ -284,6 +282,52 @@ The following secrets are required:
 ```
 AZURE_CREDENTIALS
 ```
+Build variables transferred to Github secrets to allow reference from the CICD pipeline.
+Variables Created:
+```
+SERVICE_PRINCIPLE_CLIENT_SECRET
+MONGODBASE_CONN_STRING
+MONGODBASE
+DOCKER_SERVER_USR
+DOCKER_SERVER_PWD
+FLASK_APP
+FLASK_DEBUG
+SECRET_KEY
+WEBSITES_PORT
+```
+
+# Container Orchestraion via Azure Kubernetes Service (AKS)
+
+Additional files: service.yaml & deployment.yaml.
+Setup for Azuze AKS service Cli:
+```
+az aks install-cli
+```
+To create the AKS Cluster:
+```
+az aks create --resource-group PortalApi --name portalapiAKSCluster --node-count 2 --node-vm-size standard_l8s_v3 --generate-ssh-keys --attach-acr portalapicontainer
+```
+Connecting to the AKS Cluster:
+```
+az login
+az account set --subscription 50ef3721-085f-48dd-a4f1-d17b05980663
+az aks get-credentials --resource-group PortalApi --name portalapiAKSCluster --overwrite-existing
+```
+AKS Cluster commands utilising kubectl:
+```
+kubectl get deployments --all-namespaces=true
+
+kubectl get nodes - List cluster nodes (Set as 2 in deployment)
+kubectl get pods	- List cluster pods
+kubectl logs my-pod    - Retrieve the logs for a Pod called my-pod
+kubectl describe pod my-pod  - Retrieve a description, including an error history, for my-pod 
+```
+Add / upgrade latest version of k8s extension:
+```
+az extension add --upgrade --name k8s-extension
+```
+
+
 # To-do
 
 JIRA board created to monitor tasks and progress.
