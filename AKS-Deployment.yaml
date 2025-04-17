@@ -16,7 +16,6 @@ spec:
       containers:
         - name: portalapi
           image: portalapicontainer.azurecr.io/portalapi:latest
-          imagePullPolicy: Never
           ports:
           - containerPort: 80
           env:
