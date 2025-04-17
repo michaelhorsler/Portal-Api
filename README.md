@@ -330,6 +330,17 @@ az extension add --upgrade --name k8s-extension
 
 If pods fail to start from CICD, then interrogate logs and describe. If necessary delete pod to force re-creation.
 
+Before applying AKS Configuration, ensure AKS secrets are added to the cluster to ensure variables are correctly applied to the pods. 'portalapisecret' becomes the referring store of secrets for the deployment.
+
+```
+kubectl create secret generic portalapisecret + list of secrets...
+```
+
+Reapply AKS configuration with:
+```
+kubectl apply -f AKS-Deployment.yaml
+kubectl apply -f AKS-Service.yaml
+```
 # To-do
 
 JIRA board created to monitor tasks and progress.

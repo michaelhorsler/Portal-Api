@@ -3,18 +3,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: engportalapi
+  labels:
+    app: engportalapi
 spec:
   selector:
     matchLabels:
       app: engportalapi
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
         app: engportalapi
     spec:
       containers:
-        - name: portalapi
+        - name: engportalapi
           image: portalapicontainer.azurecr.io/portalapi:latest
           ports:
           - containerPort: 80
