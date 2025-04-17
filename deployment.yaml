@@ -74,7 +74,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: portalapisecret
-                key: ARM_CLIENT_sECRET
+                key: ARM_CLIENT_SECRET
           - name: ARM_TENANT_ID
             valueFrom:
               secretKeyRef:

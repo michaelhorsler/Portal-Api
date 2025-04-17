@@ -48,7 +48,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: portalapisecret
-                key: SERVICE_PRINCPLE_CLIENT_SECRET
+                key: SERVICE_PRINCIPLE_CLIENT_SECRET
           - name: DOCKER_SERVER_USR
             valueFrom:
               secretKeyRef:
@@ -73,7 +73,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: portalapisecret
-                key: ARM_CLIENT_sECRET
+                key: ARM_CLIENT_SECRET
           - name: ARM_TENANT_ID
             valueFrom:
               secretKeyRef:

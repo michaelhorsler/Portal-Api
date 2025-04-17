@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: engportalapi
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: engportalapi
   ports:
