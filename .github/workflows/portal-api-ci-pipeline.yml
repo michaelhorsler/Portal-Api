@@ -91,10 +91,6 @@ jobs:
           - name: Setup kubectl
             id: install-kubectl
             uses: azure/setup-kubectl@v3
-          - name: Azure login
-            uses: azure/login@v2
-            with:
-              creds: ${{ secrets.AZURE_CREDENTIALS }}
 
           - name: Deploy to AKS
             id: deploy-aks
