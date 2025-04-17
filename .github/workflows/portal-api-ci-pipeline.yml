@@ -104,7 +104,7 @@ jobs:
               manifests: |
                   AKS-Deployment.yaml
                   AKS-Service.yaml
-              images: 'portalapicontainer.azurecr.io.azurecr.io/portalapi:latest'
+              images: 'portalapicontainer.azurecr.io/portalapi:latest'
  
 
 
