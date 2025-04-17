@@ -91,6 +91,7 @@ spec:
                 name: portalapisecret
                 key: AZURE_WEBHOOK_URL
 # service.yaml
+apiVersion: apps/v1
 kind: Service
 apiVersion: v1
 metadata:
