@@ -1,0 +1,14 @@
+# service.yaml
+apiVersion: apps/v1
+kind: Service
+apiVersion: v1
+metadata:
+  name: engportalapi
+spec:
+  type: NodePort
+  selector:
+    app: engportalapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
