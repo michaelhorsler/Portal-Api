@@ -91,14 +91,14 @@ spec:
               secretKeyRef:
                 name: portalapisecret
                 key: AZURE_WEBHOOK_URL
-          - name: GITHUB_CLIENT_ID
+          - name: OAUTH_CLIENT_ID
             valueFrom:
               secretKeyRef:
                 name: portalapisecret
-                key: GITHUB_CLIENT_ID
-          - name: GITHUB_CLIENT_SECRET
+                key: OAUTH_CLIENT_ID
+          - name: OAUTH_CLIENT_SECRET
             valueFrom:
               secretKeyRef:
                 name: portalapisecret
-                key: GITHUB_CLIENT_SECRET
+                key: OAUTH_CLIENT_SECRET
 
