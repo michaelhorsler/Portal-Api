@@ -1,9 +1,8 @@
-import os
 from flask_dance.contrib.github import make_github_blueprint
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+import os
 
 blueprint = make_github_blueprint(
-    client_id = os.getenv('OAUTH_CLIENT_ID'),
-    client_secret = os.getenv('OAUTH_CLIENT_SECRET'),
-
+    client_id=os.environ.get("GITHUB_OAUTH_CLIENT_ID"),
+    client_secret=os.environ.get("GITHUB_OAUTH_CLIENT_SECRET"),
+#    redirect_url="http://localhost:5000/login/github/authorized"
 )

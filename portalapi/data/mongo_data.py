@@ -3,7 +3,19 @@ import pymongo
 import ctypes
 from portalapi.data.item import Item
 
+_mock_collection = None
+
+def set_mock_collection(mock):
+    global _mock_collection
+    _mock_collection = mock
+#    print ("TESTING2")
+#    print (_mock_collection)
+    
 def get_post_collection():
+    global _mock_collection
+    if _mock_collection is not None:
+        return _mock_collection
+
     conn_string = os.getenv("MONGODBASE_CONN_STRING")
     mongodb = os.getenv("MONGODBASE")
  
@@ -11,8 +23,7 @@ def get_post_collection():
 
     db = client[mongodb] # type: ignore
 
-    posts = db.posts
-    return posts
+    return db.posts
 
 def Mbox(title, text, style):
     return ctypes.windll.user32.MessageBoxW(0, text, title, style)

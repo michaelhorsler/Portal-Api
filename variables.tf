@@ -48,12 +48,12 @@ variable "container_registry_name" {
   description = "Azure Container Registry Name"
   default     = "portalapicontainer"
 }
-variable "OAUTH_CLIENT_ID" {
+variable "GITHUB_OAUTH_CLIENT_ID" {
   description = "ID for Github OAuth Authentication"
   type        = string
   sensitive   = true
 }
-variable "OAUTH_CLIENT_SECRET" {
+variable "GITHUB_OAUTH_CLIENT_SECRET" {
   description = "SECRET for Github OAuth Authentication"
   type        = string
   sensitive   = true
