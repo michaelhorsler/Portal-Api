@@ -52,8 +52,8 @@ jobs:
           -
             name: Build and Push Production to Azure Container Portal
             uses: actions/checkout@v4
-          - run: docker build --target production --tag portalapicontainer.azurecr.io/portalapi:latest .
-          - run: docker push portalapicontainer.azurecr.io/portalapi:latest
+          - run: docker build --target production --tag portalapicontainer.azurecr.io/portalapi:${{ github.sha }} .
+          - run: docker push portalapicontainer.azurecr.io/portalapi:${{ github.sha }}
 # Trigger Terraform to build Azure IaC. 
           - run: echo Terraform to build Azure Iac
           - name: Azure login
@@ -100,7 +100,9 @@ jobs:
               manifests: |
                   AKS-Deployment.yaml
                   AKS-Service.yaml
-              images: 'portalapicontainer.azurecr.io/portalapi:latest'
+              images: 'portalapicontainer.azurecr.io/portalapi:${{ github.sha }}'
+#          - name: Force restart deployment
+#            run: kubectl rollout restart deployment portalapiAKSCluster -n default
  
 
 

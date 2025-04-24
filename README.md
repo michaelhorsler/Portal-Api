@@ -341,6 +341,8 @@ Reapply AKS configuration with:
 kubectl apply -f AKS-Deployment.yaml
 kubectl apply -f AKS-Service.yaml
 ```
+
+ADD WEBHOOK TO AKS DEPLOYMENT!!!
 # To-do
 
 JIRA board created to monitor tasks and progress.

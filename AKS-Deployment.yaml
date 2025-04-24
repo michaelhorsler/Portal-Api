@@ -17,9 +17,9 @@ spec:
     spec:
       containers:
         - name: engportalapi
-          image: portalapicontainer.azurecr.io/portalapi:latest
+          image: portalapicontainer.azurecr.io/portalapi:${GITHUB_SHA}
           ports:
-          - containerPort: 80
+          - containerPort: 5000
           env:
           - name: FLASK_APP
             valueFrom:
