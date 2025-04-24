@@ -342,7 +342,16 @@ kubectl apply -f AKS-Deployment.yaml
 kubectl apply -f AKS-Service.yaml
 ```
 
-ADD WEBHOOK TO AKS DEPLOYMENT!!!
+Updated CICD deployment yaml to utilise Github.sha, therefore webhook not required to update AKS Cluster deployment from specifying Latest tag. 
+
+# OAuth Authentication
+
+Pre-Requisites for OAuth:
+```
+pip install Authlib
+```
+Additional variables added to: AKS PortalAPiSecret, Github secrets and env for OAuth Authentication deployment.
+
 # To-do
 
 JIRA board created to monitor tasks and progress.

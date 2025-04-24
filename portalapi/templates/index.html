@@ -5,6 +5,12 @@
   <div class="jumbotron">
     <h1 class="display-4">Portal Api App</h1>
     <p class="lead">Portal Api app - Running on AKS Cluster.</p>
+
+    {% if user %}
+      <p>👋 Welcome, <strong>{{ user.name or user.login }}</strong> | <a href="/logout">Logout</a></p>
+    {% else %}
+      <a class="btn btn-primary" href="/login">Login with GitHub</a>
+    {% endif %}
   </div>
 
   <form action="add-data" method="post">
@@ -23,16 +29,12 @@
 
   <div class="row">
     <div class="col-md-12">
-
       <ul class="list-group mb-4">
         <h2>Received API Calls</h2>
-        {% for item in view_model.items %}  
-          <li>{{ item.customer }} - {{item.sales_order}} - {{item.engineer}}</li>   
+        {% for item in view_model.items %}
+          <li>{{ item.customer }} - {{ item.sales_order }} - {{ item.engineer }}</li>
         {% endfor %}
       </ul>
-
     </div>
   </div>
-
-
 {% endblock %}
