@@ -7,9 +7,18 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from portalapi.data.mongo_data import _mock_collection, add_mongodata, apirequest, get_items
 from portalapi.view_model import viewmodel
 
+from functools import wraps
+
 import os
-#from dotenv import load_dotenv
-#load_dotenv()
+
+def github_login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not github.authorized:
+            print("Not Authorised")
+            return redirect(url_for("github.login"))
+        return f(*args, **kwargs)
+    return decorated_function
 
 def create_app():
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
@@ -20,35 +29,21 @@ def create_app():
 
     app.register_blueprint(blueprint, url_prefix="/login")
 
-#    print("GitHub client ID:", os.environ.get("GITHUB_OAUTH_CLIENT_ID"))
-#    print("GitHub secret:", os.environ.get("GITHUB_OAUTH_CLIENT_SECRET"))
-#    print("OAuth Blueprint registered:", blueprint)
-#    print(app.url_map)
-
     @app.route('/')
+    @github_login_required
     def index():
-#        global _mock_collection
-#        print ("TESTING")
-#        print (github)
-#        if _mock_collection is None:
-#            print("It is None!")
-        if not github.authorized:
-            print ("Not Authorised")
-            return redirect(url_for("github.login"))
-#        resp = github.get("/user")
-#        if not resp.ok:
-#            return f"GitHub API error: {resp.text}", 500
-#        session['user'] = resp.json()
         items = get_items()
         item_view_model = viewmodel(items)
         return render_template('index.html', view_model=item_view_model)
 
     @app.route('/add-data', methods=["POST"])
+    @github_login_required
     def add_data():
         add_mongodata()
         return redirect(url_for('index'))
 
     @app.route('/api')
+    @github_login_required
     def api_request():
         customer = request.args.get('customer', default='*', type=str)
         salesorder = request.args.get('salesorder', default='*', type=str)
