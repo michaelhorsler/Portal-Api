@@ -78,6 +78,8 @@ jobs:
               TF_VAR_FLASK_DEBUG: ${{ secrets.TF_VAR_FLASK_DEBUG }}
               TF_VAR_SECRET_KEY: ${{ secrets.TF_VAR_SECRET_KEY }}
               TF_VAR_WEBSITES_PORT: ${{ secrets.TF_VAR_WEBSITES_PORT }}
+              TF_VAR_GITHUB_OAUTH_CLIENT_ID: ${{ secrets.TF_VAR_GITHUB_OAUTH_CLIENT_ID }}
+              TF_VAR_GITHUB_OAUTH_CLIENT_SECRET: ${{ secrets.TF_VAR_GITHUB_OAUTH_CLIENT_SECRET }}
           - run: curl -dH -X POST "$(terraform output -raw webhook_url)"
 
 

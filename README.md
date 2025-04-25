@@ -98,6 +98,8 @@ The `.env` file is used by flask to set environment variables when running `flas
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:
 ```bash
 $ poetry run flask run
+To account for local Github authorisation:
+$ flask run --host=localhost
 ```
 
 You should see output similar to the following:
