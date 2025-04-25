@@ -41,7 +41,7 @@ def create_app():
             if resp.ok:
                 user = resp.json()
 
-        return render_template('index.html', view_model=item_view_model)
+        return render_template('index.html', view_model=item_view_model, user=user)
 
     @app.route('/add-data', methods=["POST"])
     @github_login_required
@@ -56,6 +56,11 @@ def create_app():
         salesorder = request.args.get('salesorder', default='*', type=str)
         engineer = request.args.get('engineer', default='*', type=str)
         apirequest(customer, salesorder, engineer)
+        return redirect(url_for('index'))
+
+    @app.route('/login')
+    @github_login_required
+    def login():
         return redirect(url_for('index'))
 
     @app.route('/logout')
