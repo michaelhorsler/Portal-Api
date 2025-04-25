@@ -34,6 +34,13 @@ def create_app():
     def index():
         items = get_items()
         item_view_model = viewmodel(items)
+
+        user = None
+        if github.authorized:
+            resp = github.get("/user")
+            if resp.ok:
+                user = resp.json()
+
         return render_template('index.html', view_model=item_view_model)
 
     @app.route('/add-data', methods=["POST"])
@@ -53,7 +60,9 @@ def create_app():
 
     @app.route('/logout')
     def logout():
-        session.pop('user', None)
-        return redirect(url_for('index'))
+        token = github.blueprint.token["access_token"]
+        del github.blueprint.token  # clear session
+        print(f"User logged out: {token}")
+        return redirect(url_for("index"))
 
     return app
