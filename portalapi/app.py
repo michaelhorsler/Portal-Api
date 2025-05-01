@@ -96,4 +96,10 @@ def create_app():
         print(f"User logged out: {token}")
         return redirect(url_for("index"))
 
+
+    @app.route('/hpa')
+    @github_login_required
+    def hpa_loading():
+        sum(i*i for i in range(10000000))
+    
     return app

@@ -346,6 +346,32 @@ kubectl apply -f AKS-Service.yaml
 
 Updated CICD deployment yaml to utilise Github.sha, therefore webhook not required to update AKS Cluster deployment from specifying Latest tag. 
 
+## AKS Monitoring and Metrics Server
+
+In order to monitor CPU and memory usage of the AKS Cluster and introduce Horizontal Pod Autoscaling (HPA), the metrics server needs to be installed:
+```
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+Verified with:
+```
+kubectl get deployment metrics-server -n kube-system
+```
+To enable horizontal pod autoscaling, an additional hpa.yaml file provides the limits to monitor and scaling the Cluster by.
+
+To Apply the HPA scaling:
+```
+kubectl apply -f AKS-hpa.yaml
+```
+To get and view the realtime loading on the Cluster and pods:
+```
+kubectl get hpa
+kubectl get pods -w
+```
+HPA scaling can be proven by utilising 'hey' to provide a limited loading on to the designated portalapi application.
+
+```
+hey -z 1m -c 50 http://74.177.168.170:5000
+```
 # OAuth Authentication
 
 Pre-Requisites for OAuth:

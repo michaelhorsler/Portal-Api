@@ -20,6 +20,11 @@ spec:
           image: portalapicontainer.azurecr.io/portalapi:${GITHUB_SHA}
           ports:
           - containerPort: 5000
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 500m
           env:
           - name: FLASK_APP
             valueFrom:
