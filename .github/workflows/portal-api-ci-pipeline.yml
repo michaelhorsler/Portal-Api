@@ -28,7 +28,7 @@ jobs:
       - name: Install and run pip-audit inside the container using Poetry
         run: |
           docker run --rm --entrypoint "" portalapi:test poetry run pip install --upgrade pip
-          docker run --rm --entrypoint "" portalapi:test poetry add pip-audit
+          docker run --rm --entrypoint "" portalapi:test poetry run python -m pip_audit
           docker run --rm --entrypoint "" -e PIPAPI_PYTHON_LOCATION=/app/.venv/bin/python portalapi:test poetry run pip-audit
             
       
