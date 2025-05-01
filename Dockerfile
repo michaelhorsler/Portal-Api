@@ -1,5 +1,8 @@
 FROM python:buster AS base
 
+# Upgrade base pip & setuptools to avoid vulnerable preinstalled versions
+RUN pip install --upgrade pip setuptools
+
 # Install Poetry and the export plugin
 RUN pip install poetry \
  && poetry self add poetry-plugin-export
