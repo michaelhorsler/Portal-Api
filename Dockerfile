@@ -1,4 +1,4 @@
-FROM python:buster AS base
+FROM python:3.9-slim AS base
 
 # Upgrade base pip & setuptools to avoid vulnerable preinstalled versions
 RUN pip install --upgrade pip setuptools
