@@ -1,9 +1,9 @@
 FROM python:buster AS base
 
-# Perform common operations, dependency installation etc...
 # Install Poetry and the export plugin
 RUN pip install poetry \
- && poetry self add poetry-plugin-export
+ && poetry self add poetry-plugin-export \
+ && pip install pip-audit  # Install pip-audit
 
 WORKDIR /app
 COPY poetry.toml ./

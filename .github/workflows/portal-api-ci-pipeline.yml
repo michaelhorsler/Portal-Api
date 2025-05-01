@@ -27,6 +27,7 @@ jobs:
 
       - name: Run pip-audit inside the container using Poetry
         run: |
+          docker run --rm portalapi:test poetry run pip install pip-audit
           docker run --rm --entrypoint "" portalapi:test poetry run pip-audit
 
       - name: Trivy image scan (fail on critical/high)
