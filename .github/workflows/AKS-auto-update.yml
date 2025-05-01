@@ -1,0 +1,60 @@
+name: AKS Auto Upgrade
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 0'  # Every Sunday at 3 AM UTC
+
+jobs:
+  upgrade-aks:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Get latest AKS version
+        id: version
+        run: |
+          latest_version=$(az aks get-upgrades \
+            --resource-group ${{ secrets.RESOURCE_GROUP }} \
+            --name ${{ secrets.AKS_CLUSTER_NAME }} \
+            --query 'controlPlaneProfile.upgrades[-1].kubernetesVersion' \
+            --output tsv)
+
+          echo "Latest version: $latest_version"
+          echo "version=$latest_version" >> "$GITHUB_OUTPUT"
+
+      - name: Upgrade AKS cluster control plane
+        run: |
+          az aks upgrade \
+            --resource-group ${{ secrets.RESOURCE_GROUP }} \
+            --name ${{ secrets.AKS_CLUSTER_NAME }} \
+            --kubernetes-version ${{ steps.version.outputs.version }} \
+            --yes
+
+      - name: Get node pools
+        id: nodepools
+        run: |
+          pools=$(az aks nodepool list \
+            --resource-group ${{ secrets.RESOURCE_GROUP }} \
+            --cluster-name ${{ secrets.AKS_CLUSTER_NAME }} \
+            --query "[].name" -o tsv)
+          echo "$pools"
+          echo "names=$pools" >> "$GITHUB_OUTPUT"
+
+      - name: Upgrade all node pools
+        run: |
+          for pool in ${{ steps.nodepools.outputs.names }}; do
+            echo "Upgrading node pool: $pool"
+            az aks nodepool upgrade \
+              --resource-group ${{ secrets.RESOURCE_GROUP }} \
+              --cluster-name ${{ secrets.AKS_CLUSTER_NAME }} \
+              --name $pool \
+              --kubernetes-version ${{ steps.version.outputs.version }} \
+              --yes
+          done

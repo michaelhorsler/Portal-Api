@@ -342,6 +342,8 @@ Reapply AKS configuration with:
 ```
 kubectl apply -f AKS-Deployment.yaml
 kubectl apply -f AKS-Service.yaml
+kubectl apply -f AKS-hpa.yaml
+kubectl top pods -n default
 ```
 
 Updated CICD deployment yaml to utilise Github.sha, therefore webhook not required to update AKS Cluster deployment from specifying Latest tag. 
@@ -372,6 +374,26 @@ HPA scaling can be proven by utilising 'hey' to provide a limited loading on to 
 ```
 hey -z 1m -c 50 http://74.177.168.170:5000/hpa
 ```
+To retrieve Cluster metrics from cli:
+```
+kubectl get hpa -n default
+kubectl describe hpa engportalapi-hpa -n default
+```
+
+# AKS Patching and Updates
+
+In order to keep my AKS Cluster up to date, I configured the node pools to automatic OS image upgrades. This handles VM-level security updates, however the Kubernetes version does not auto-upgrade.
+Therefore I created an additional Github Actions Workflow that automates AKS Kubernetes version upgrades. This is detailed within:
+```
+AKS-auto-upgrade.yml 
+```
+This relies upon Github Secrets:
+```
+AZURE_CREDENTIALS
+RESOURCE_GROUP
+AKS_CLUSTER
+```
+
 # OAuth Authentication
 
 Pre-Requisites for OAuth:
