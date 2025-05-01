@@ -25,12 +25,12 @@ jobs:
       - name: Build Docker image (test stage)
         run: docker build --target test --tag portalapi:test .
 
-      - name: Install pip-audit inside the container using Poetry
+      - name: Install and run pip-audit inside the container using Poetry
         run: |
-          # First, install pip-audit without invoking poetry run pytest
+          docker run --rm --entrypoint "" portalapi:test poetry run pip install --upgrade pip
           docker run --rm --entrypoint "" portalapi:test poetry add pip-audit
-          # Now, run pip-audit using poetry
-          docker run --rm --entrypoint "" portalapi:test poetry run pip-audit
+          docker run --rm --entrypoint "" -e PIPAPI_PYTHON_LOCATION=/app/.venv/bin/python portalapi:test poetry run pip-audit
+            
       
       - name: Trivy image scan (fail on critical/high)
         uses: aquasecurity/trivy-action@0.28.0
