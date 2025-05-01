@@ -5,7 +5,7 @@ description = "Engineering Portal Api app Bosch Rexroth"
 authors = []
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.9.2"
 Flask = "^2.2.5"
 python-dotenv = "^0.14.0"
 requests = "^2.31.0"
@@ -16,6 +16,7 @@ safety = "^3.2.7"
 flask-dance = "^7.1.0"
 loggly-python-handler = "^1.0.1"
 pip = "^23.3"
+cryptography = "^44.0.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.4"
