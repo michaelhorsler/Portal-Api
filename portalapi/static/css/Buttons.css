@@ -1,0 +1,297 @@
+body {
+		    margin:0px;
+		    padding:0px;
+		    border:0px;
+			font-family:Arial, Helvetica, sans-serif;
+}
+#container {
+		    margin:0px;
+		    padding:0px;
+		    border:0px;
+}
+#Detail_Typ {
+			font-family:Arial, Helvetica, sans-serif;
+		    font-size: 12px;
+		    line-height:13px;
+		    height:13px;
+		    margin:0px;
+		    padding:0px;
+		    border:0px;
+            z-index: 0;
+/*			background-image:url('images/Index0.jpg');  */
+			position:absolute;
+            color: dark grey;
+/*			background-color: #e0e0e0; */
+}
+#Alpha_Typ {
+			width: 970px;
+			font:13px arial,sans-serif;
+            z-index: 0;
+			position:absolute;
+            color: dark grey;           
+			border: 1px solid grey;
+			background-color: #ffffff; 
+			background-color: #e0e0e0; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+  background: #e0e0e0; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left,rgba(170,170,170,1), rgba(170,170,170,0)); /*Safari 5.1-6*/
+  background: -o-linear-gradient(right,rgba(170,170,170,1), rgba(170,170,170,0)); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(right,rgba(170,170,170,1), rgba(170,170,170,0)); /*Fx 3.6-15*/
+  background: linear-gradient(to right, rgba(170,170,170,1), rgba(170,170,170,0)); /*Standard*/
+}
+#Alpha_Typ:hover {
+			background-color: #55aaee; 
+}
+#Alpha_Typ2 {
+			width: 970px;
+			font:13px arial,sans-serif;
+            z-index: 0;
+			position:absolute;
+            color: dark grey;           border: 1px solid grey;
+			background-color: #eeee00; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+  background: #e0e0e0; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left,rgba(238,238,0,1), rgba(170,170,170,0)); /*Safari 5.1-6*/
+  background: -o-linear-gradient(right,rgba(238,238,0,1), rgba(170,170,170,0)); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(right,rgba(238,238,0,1), rgba(170,170,170,0)); /*Fx 3.6-15*/
+  background: linear-gradient(to right, rgba(238,238,0,1), rgba(170,170,170,0)); /*Standard*/
+}
+.Shadow1 {
+-webkit-transform: translate3d(0,0,0);
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15)
+}
+.Shadow2 {
+-webkit-transform: translate3d(0,0,0);
+  text-shadow: 
+                0 1px 3px rgba(0,0,0,.2),
+               0 3px 5px rgba(0,0,0,.2),
+               0 4px 5px rgba(0,0,0,.15),
+               0 5px 5px rgba(0,0,0,.15),
+               0 7px 5px rgba(0,0,0,.1)
+}
+.Shadow3 {
+  text-shadow: 
+                0 2px 3px rgba(0,0,0,.4)
+}
+.Shadow4 {
+/*
+filter: glow(color=black,strength=5);
+*/
+
+-webkit-transform: translate3d(0,0,0);
+  text-shadow: 
+                0 2px 3px rgba(0,0,0,.2)
+
+}
+.Shadow5 {
+
+-webkit-transform: translate3d(0,0,0);
+  text-shadow: 
+                0 2px 3px rgba(0,0,0,0.3)
+            color: dark grey;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+    background: -webkit-linear-gradient(left, rgba(150,150,150,0.1), rgba(150,150,150,.3)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(150,150,150,0.1), rgba(150,150,150,.3)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(150,150,150,0.1), rgba(150,150,150,.3)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(150,150,150,0.1), rgba(150,150,150,.3)); /* Standard syntax (must be last) */
+			background-color: #ffffff; 
+
+box-shadow:                 
+				0 1px 3px rgba(0,0,0,.2),
+               0 3px 5px rgba(0,0,0,.2),
+               0 4px 5px rgba(0,0,0,.1)
+
+}
+
+.Shadow9 {
+-webkit-transform: translate3d(0,0,0);
+		    text-shadow: 1px 1px 2px black, 0 0 1em grey, 0 0 0.2em grey;
+		    color: white;
+}
+#Buttons {	
+			font:13px arial,sans-serif;
+			width: 100px;
+			height: 102px;
+            z-index: 0;
+			position:absolute;
+            color: dark grey;
+            border: 1px solid grey;
+			border-radius: 10px;
+			border-style: none;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+    background: -webkit-linear-gradient(left, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(230,230,230,0), rgba(230,230,230,1)); /* Standard syntax (must be last) */
+			background-color: #ffffff; 
+}
+#Buttons:hover {	
+			border-style: none;
+			-moz-box-shadow: 0px 0px 0px #888;
+			-webkit-box-shadow: 0px 0px 0px #888;
+			box-shadow: 1px 1px 5px #222;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888');
+			-ms-transform: scale(1.15); /* IE 9 */
+		    -webkit-transform: scale(1.15); /* Chrome, Safari, Opera */
+		    transform: scale(1.15);
+}
+#Buttons2 {	
+			font:13px arial,sans-serif;
+			width: 90px;
+			height: 102px;
+/*            z-index: 0;*/
+			position:absolute;
+            color: dark grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+    background: -webkit-linear-gradient(left, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(230,230,230,0), rgba(230,230,230,1)); /* Standard syntax (must be last) */
+			background-color: #ffffff; 
+}
+#Buttons2:hover {	
+			-moz-box-shadow: 0px 0px 0px #888;
+			-webkit-box-shadow: 0px 0px 0px #888;
+			box-shadow: 1px 1px 5px #222;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888');
+			-ms-transform: scale(1.2); /* IE 9 */
+		    -webkit-transform: scale(1.2); /* Chrome, Safari, Opera */
+		    transform: scale(1.2);
+}
+#Buttons3 {	
+			font:13px arial,sans-serif;
+			width: 47px;
+			height: 47px;
+/*            z-index: 0;*/
+			position:absolute;
+            color: dark grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+    background: -webkit-linear-gradient(left, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(230,230,230,0), rgba(230,230,230,1)); /* Standard syntax (must be last) */
+			background-color: #ffffff; 
+}
+#Buttons3:hover {	
+			-moz-box-shadow: 0px 0px 0px #888;
+			-webkit-box-shadow: 0px 0px 0px #888;
+			box-shadow: 1px 1px 5px #222;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888');
+			-ms-transform: scale(0.93); /* IE 9 */
+		    -webkit-transform: scale(0.93); /* Chrome, Safari, Opera */
+		    transform: scale(0.93);
+}
+#Buttons4 {	
+			font:13px arial,sans-serif;
+			width: 60px;
+			height: 72px;
+/*            z-index: 0;*/
+			position:absolute;
+            color: dark grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+    background: -webkit-linear-gradient(left, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(230,230,230,0), rgba(230,230,230,1)); /* Standard syntax (must be last) */
+			background-color: #ffffff; 
+}
+#Buttons4:hover {	
+/*			background-color: #55aaee; */
+			-moz-box-shadow: 0px 0px 0px #888;
+			-webkit-box-shadow: 0px 0px 0px #888;
+			box-shadow: 1px 1px 5px #222;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888');
+			-ms-transform: scale(1.2); /* IE 9 */
+		    -webkit-transform: scale(1.2); /* Chrome, Safari, Opera */
+		    transform: scale(1.2);
+			}
+#Buttons5 {	
+			font:13px arial,sans-serif;
+			width: 50px;
+			height: 40px;
+/*            z-index: 0;*/
+			position:absolute;
+            color: dark grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+    background: -webkit-linear-gradient(left, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(230,230,230,0), rgba(230,230,230,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(230,230,230,0), rgba(230,230,230,1)); /* Standard syntax (must be last) */
+			background-color: #ffffff; 
+}
+#Buttons5:hover {	
+/*			background-color: #55aaee; */
+			-moz-box-shadow: 0px 0px 0px #888;
+			-webkit-box-shadow: 0px 0px 0px #888;
+			box-shadow: 1px 1px 5px #222;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color='#888888');
+			-ms-transform: scale(1.2); /* IE 9 */
+		    -webkit-transform: scale(1.2); /* Chrome, Safari, Opera */
+		    transform: scale(1.2);
+			}
+.Querying {	
+			width: 200px;
+			margin: 330px 0 0 400px;
+            z-index: 5;
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			display: none;
+}

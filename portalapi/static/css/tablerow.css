@@ -1,0 +1,36 @@
+tr:nth-child(even) {
+/*  background-color: #dddddd;*/
+		    background: -webkit-linear-gradient(left, rgba(201,201,201,0.5), rgba(201,201,201,0.5)); /* For Safari 5.1 to 6.0 */
+  			background: -o-linear-gradient(right, rgba(201,201,201,0.5), rgba(201,201,201,0.5)); /* For Opera 11.1 to 12.0 */
+	    	background: -moz-linear-gradient(right, rgba(201,201,201,0.5), rgba(201,201,201,0.5)); /* For Firefox 3.6 to 15 */
+	    	background: linear-gradient(to right, rgba(201,201,201,0.5), rgba(201,201,201,0.5)); /* Standard syntax (must be last) */
+		    opacity: 0.8;
+}
+
+tr:nth-child(odd) {
+		    background-color: transparent;
+}
+
+.trhover {
+			transition: 0s;
+}
+
+.trhover:hover {
+			opacity: 1.0;
+			cursor: default;
+			background-color: #ddffff;
+/*			font-weight:bold;	*/
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+
+		    background: white; /* For browsers that do not support gradients */
+		    background: -webkit-linear-gradient(white, #bbbbff ,0.5); /* For Safari 5.1 to 6.0 */
+		    background: -o-linear-gradient(white, #bbbbff); /* For Opera 11.1 to 12.0 */
+		    background: -moz-linear-gradient(white, #bbbbff); /* For Firefox 3.6 to 15 */
+		    background: linear-gradient(white, #ff99ff); /* Standard syntax */
+}
+
+

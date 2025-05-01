@@ -2,7 +2,7 @@
 {% block title %}Engineering Portal Api App{% endblock %}
 
 {% block content %}
-  <div class="jumbotron">
+  <div class="Alpha_Typ" id="titlebar">
     <h1 class="display-4">Portal Api App</h1>
     <p class="lead">Portal Api app - Running on AKS Cluster.</p>
 
@@ -12,29 +12,36 @@
       <a class="btn btn-primary" href="/login">Login with GitHub</a>
     {% endif %}
   </div>
-
+  <div class="Alpha_Typ" id="input">
   <form action="add-data" method="post">
-    <label for="name">Post test data: </label>
-    <input type="text" name="title" />
+    <label for="name">Post to Trello: </label>
     <input type="submit" value="Submit Test Data" />
   </form>
 
   <form action="api?customer=c&salesorder=b&engineer=d">
     <label for="name">API Call: </label>
-    <input type="text" name="customer" />
-    <input type="text" name="salesorder" />
-    <input type="text" name="engineer" />
+    Customer:<input type="text" name="customer" />
+    Sales Order:<input type="text" name="salesorder" />
+    Engineer:<input type="text" name="engineer" />
     <input type="submit" value="Test API Call" />
   </form>
-
+</div>
+<div class="Alpha_Typ" id="output">
   <div class="row">
     <div class="col-md-12">
       <ul class="list-group mb-4">
         <h2>Received API Calls</h2>
-        {% for item in view_model.items %}
-          <li>{{ item.customer }} - {{ item.sales_order }} - {{ item.engineer }}</li>
-        {% endfor %}
+
+        {% if message %}
+          <p>{{ message }}</p>  <!-- Display the message when items are empty -->
+        {% else %}
+        <!-- Render items if available -->
+          {% for item in view_model.items %}
+            <li>{{ item.customer }} - {{ item.sales_order }} - {{ item.engineer }}</li>
+          {% endfor %}
+        {% endif %}
       </ul>
     </div>
   </div>
+</div>
 {% endblock %}

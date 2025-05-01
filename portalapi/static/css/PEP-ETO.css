@@ -1,0 +1,1854 @@
+<STYLE>body,input{font-family:Calibri,Arial;margin:3px}
+h1{margin:0 0 0 20px}
+/*html,body,#container{height:100%}*/
+body>#container{height:100%;min-height:100%;line-height: 130%;overflow-y: visible;}#header{height:50px;background-color:#ddd;border-bottom:1px solid #aaa;width:100%}.demo{width:150px;height:150px;padding:5px;background-color:#f81;position:absolute;top:150px;left:300px}#content{padding-bottom:45em}
+
+   @media print {
+  body {
+            height: 100%;
+			width: 100%;
+            overflow-y: visible;
+            overflow-x: visible;
+        }
+}
+
+		#footer{
+			bottom:15;
+			font-size:12px;
+			clear:both;
+			position:relative;
+			z-index:-1;
+			height:0em;
+			text-align:center
+		}
+		.Full_Screen_View {	
+/*		    transform: scale(0.8); */
+			position:absolute;
+			width: 97%;
+			height: 97%;
+			margin: 5px 0 0 5px;
+            z-index: 99;
+            color: dark grey;
+            border: 1px solid grey;
+			background-color: #ffffff; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			display: none;
+		}
+		.Button_Full_Screen_ViewClose {	
+/*		    transform: scale(0.8); */
+			top: 10px;
+			right: 10px;
+		}
+.blur{
+/*	box-shadow: 0px 0px 20px 10px rgba(255,255,255,1);
+	transform: scale(0.9); 
+	opacity: 0.7;
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: url('blur.svg#blur'); /* Older FF and others - http://jordanhollinger.com/media/blur.svg */
+/*  filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius='10');
+  overflow: hidden;*/
+}		p1 {
+			font-family:Arial, Helvetica, sans-serif;
+		    font-size: 10px;
+		    line-height:11px;
+		    height:11px;       /* ++ */
+		    margin:0px;
+		    padding:0px;
+		    border:0px;
+			color:#005500;
+		}
+		.DisplayNone {display: None;}
+		#Index_Typ {
+			display: none;
+            position: absolute;
+			width: 200px;
+            height: 50px;
+			font:13px arial,sans-serif;
+            color: dark grey;
+			background-color: #e0e0e0; 
+            border: 2px solid black;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+		}
+		#Detail_Typ {
+			font:13px arial,sans-serif;
+/*            z-index: 0;
+/*			background-image:url('images/Index0.jpg');  */
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+			background-color: #e0e0e0; 
+            border: 1px solid grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+/*			line-height: 130%;  */
+		}
+		#Alpha_Typ {
+			width: 990px;
+			font:13px arial,sans-serif;
+            z-index: 0;
+/*			background-image:url('images/Index0.jpg');  */
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+            border: 1px solid grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+/*			line-height: 130%;  */
+		}
+		#Button_Typ {
+			font:13px arial,sans-serif;
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+            border: 1px solid grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+/*			line-height: 130%;  */
+		}
+		#Report_Typ {
+			background-image:url('../images/PEP-eto/background-Bridge2-faded.jpg');
+			background-position:center;
+			font:13px arial,sans-serif;
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+            border: 1px solid grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+		}
+		#Key {	
+			font:13px arial,sans-serif;
+			width: 140px;
+			height: 52px;
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+            border: 1px solid grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			}
+        .Home {
+			display: none;
+			}
+		.Rexroth_Logo {	
+			top: 5px;
+			Right: 10px;
+			position:absolute;
+			}
+		.Button_Test {	
+/*			margin: 180px 0 0 1050px;*/
+			Top: 180px;
+			Right: 10px;
+			}
+		.Button_TestIT {	
+			margin: 840px 0 0 10px;
+			display: none;
+			}
+		.Button_Notifications {	
+/*			margin: 300px 0 0 1050px;*/
+			Top: 300px;
+			Right: 10px;
+			Display:none;
+			}
+		.Button_NotifFAQSmall {	
+			margin: 150px 0 0 520px;
+			}
+		.Button_SetupSmall {	
+			margin: 10px 0 0 580px;
+			}
+		.Button_EngIT {	
+			margin: 540px 0 0 10px;
+/*			display: none;
+*/			}
+		.Button_EngITClose {	
+            z-index: 0;
+			margin: 580px 0 0 900px;
+			}
+		.Button_FAQ {	
+/*			margin: 540px 0 0 1050px;*/
+			Top: 540px;
+			Right: 10px;
+			Display:none;
+			}
+		.Button_FAQClose {	
+            z-index: 0;
+			margin: 360px 0 0 610px;
+			}
+		.Button_Launches {	
+/*			margin: 420px 0 0 940px;*/
+			Top: 420px;
+			Right: 120px;
+			}
+		.Button_Sitemap {	
+/*			margin: 540px 0 0 940px;*/
+			Top: 540px;
+			Right: 120px;
+			}
+		.Button_Updates {	
+/*			margin: 420px 0 0 1050px;*/
+			Top: 420px;
+			Right: 10px;
+			}
+		.Button_User_Info {	
+			margin: 180px 0 0 120px;
+			display: none;
+			}
+		.Button_ProdPlanner {	
+			margin: 300px 0 0 120px;
+			}
+		.Button_Spares_Quotations {	
+			margin: 420px 0 0 120px;
+			}
+		.Button_Dept_Structure {	
+			margin: 180px 0 0 940px;
+			display: none;
+			}
+        .Notifications {
+			margin: 170px 0 0 250px;
+			width: 600px;
+            height: 400px;
+			background-image:url('../images/PEP-ETO/Background-Train2.jpg');
+			display: none;
+			}
+		.Notifications_Page1 {	
+            z-index: 0;
+			}
+		.Notifications_Page2 {	
+            z-index: 0;
+			display: none;
+			}
+		.Button_NotificationsClose {	
+            z-index: 0;
+			margin: 280px 0 0 490px;
+			}
+		.Button_NotificationsForward {	
+            z-index: 0;
+			margin: 330px 0 0 290px;
+			}
+		.Button_NotificationsBack {	
+            z-index: 0;
+			margin: 330px 0 0 230px;
+			display: none;
+			}
+        .PEP-ETO {
+            z-index: 0;
+			margin: 5px 0 0 365px;
+			width: 370px;
+            height: 140px;
+			}
+        .Register {
+            z-index: 1;
+			margin: 30px 0 0 380px;
+			width: 200px;
+            height: 60px;
+			}
+        .Search {
+            z-index: 1;
+			margin: 30px 0 0 500px;
+			width: 200px;
+            height: 60px;
+			}
+        .Reports {
+            z-index: 1;
+			margin: 30px 0 0 620px;
+			width: 200px;
+            height: 90px;
+			}
+        .Test {
+			margin: 170px 0 0 10px;
+			width: 140px;
+            height: 45px;
+			display: none;
+			}
+		.Test_Start {	
+			width: 200px;
+			margin: 120px 0 0 480px;
+            z-index: 5;
+			position:absolute;
+            color: dark grey;
+            border: 1px solid grey;
+			background-color: #ffffff; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			display: none;
+			}
+        .Test_Detail {
+			margin: 10px 0 0 160px;
+			width: 600px;
+            height: 560px;
+			display: none;
+			}
+        .Test_Detail2 {
+			margin: 310px 0 0 780px;
+			width: 300px;
+            height: 260px;
+			display: none;
+			}
+        .Test_Config {
+			margin: 420px 0 0 305px;
+			width: 550px;
+            height: 250px;
+			display: none;
+			}
+        .Test_Ext {
+			margin: 5px 0 0 35px;
+			width: 65px;
+            height: 25px;
+			}
+        .Test_Browse {
+			margin: 5px 0 0 35px;
+			width: 90px;
+            height: 25px;
+			}
+        .Test_Browse2 {
+			margin: 35px 0 0 35px;
+			width: 90px;
+            height: 25px;
+			}
+        .Test_Browse3 {
+			margin: 12px 0 0 25px;
+			width: 120px;
+            height: 25px;
+			}
+        .Test_ConfigBut {
+			margin: 15px 0 0 35px;
+			width: 65px;
+            height: 25px;
+			}
+
+		.Querying {	
+			width: 200px;
+			margin: 350px 0 0 550px;
+            z-index: 15;
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			display: none;
+			}
+		.Registering {	
+			width: 300px;
+			margin: 330px 0 0 410px;
+            z-index: 5;
+			position:absolute;
+            color: dark grey;
+            border: 1px solid grey;
+			background-color: #ffffff; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			display: none;
+			}
+
+        .Location {
+			font:13px arial,sans-serif;
+			display: none;
+            z-index: 2;
+			position:absolute;
+            border: 1px solid grey;
+			background-color: #ffffff; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			}
+        .Location_Snt {
+			display: none;
+			}
+        .Location_Waf {
+			display: none;
+			}
+        .Location_Cir {
+			display: none;
+			}
+        .Status {
+			display: none;
+			}
+        .WorkFlow {
+			display: none;
+			}
+        .Search_Current {
+			display: none;
+			}
+        .Search_Historical {
+			display: none;
+			}
+        .Search_Workload {
+			display: none;
+			}
+        .Search_Projects {
+			display: none;
+			}
+        .Search_Sales {
+			display: none;
+			}
+        .Search_All {
+			display: none;
+			}
+        .Search_QGs {
+			display: none;
+			}
+        .Search_Criteria {
+			display: none;
+			}
+        .Search_Fields {
+			display: none;
+			}
+        .Search_Project {
+			display: none;
+			}
+        #SCurrent {
+			display: none;
+			}
+        #SHistorical {
+			height: 100%;
+			}
+        #SAll {
+			display: none;
+			}
+		#Hidden {	
+			display: none;
+			}
+        .Status_Reports {
+			display: none;
+			}
+        .Print_Reports {
+			display: none;
+			margin: 10px 0 0 27px;
+			}
+        .Change_Reports {
+			display: none;
+			margin: 230px 0 0 27px;
+			}
+        .Pep-eto_Reports {
+			display: none;
+			margin: 120px 0 0 27px;
+			}
+		.Add_Customer {	
+			margin: 200px 0 0 400px;
+            z-index: 1;
+			display: none;
+			width: 450px;
+			height: 400px;
+            border: 1px solid grey;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			display: none;
+			}
+		.AddCust_Confirm {	
+			margin: 280px 0 0 15px;
+			}
+		.AddCust_Cancel {	
+			margin: 280px 0 0 340px;
+			}
+        .Docs {
+            z-index: 5;
+			margin: 10px 0 0 150px;
+			display: none;
+			}
+		.DocsClose {	
+            z-index: 1;
+			margin: 0 0 0 890px;
+			position: absolute;
+			bottom: 15;
+			}
+        .Changes {
+            z-index: 5;
+			margin: 10px 0 0 150px;
+			display: none;
+			}
+		.ChangesClose {	
+            z-index: 1;
+			margin: 0 0 0 890px;
+			position: absolute;
+			bottom: 15;
+			}
+
+        .Table {
+			font:8px arial,sans-serif;
+			}
+        .Border {
+			display: none;
+			z-index: -1;
+			font:13px arial,sans-serif;
+            z-index: 2;
+/*			background-image:url('images/Index0.jpg');  */
+			position:absolute;
+            color: dark grey;
+            border: 2px solid black;
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			}
+        .Class1 {
+			display: none;
+			}
+        .Class2 {
+			display: none;
+			}
+        .Classification {
+			margin: 50 0 0 170px;
+			width: 770px;
+			height: 545px;
+            z-index: 2;
+			display: none;	
+			}
+        .CustInfo {
+			display: none;	
+/*			background-image:url('images/Index0Back.jpg');*/
+			}
+		.Cust_Confirm {	
+			margin: 285px 0 0 395px;
+			}
+		.Cust_Back {	
+			margin: 285px 0 0 15px;
+			}
+		.Cust_Search {	
+			margin: 285px 0 0 250px;
+			}
+        .SearchCust {
+			margin: 80px 0 0 150px;
+			display: none;	
+			}
+        .SearchCust2 {
+			margin: 80px 0 0 10px;
+			width: 123px;
+            height: 700px;
+			display: none;	
+			}
+        .SearchCust3 {
+			margin: 10px 0 0 150px;
+			width: 1015px;
+            height: 60px;
+			display: none;	
+			}
+		.CustSearch_Confirm {	
+/*			margin: 585px 0 0 910px;*/
+			margin: 460px 0 0 15px;
+			display: none;	
+			}
+		.CustSearch_Cancel {	
+/*			margin: 585px 0 0 15px;*/
+			margin: 585px 0 0 15px;
+			}
+		.CustSearch_A2Z {	
+			margin: 15px 0 0 15px;
+			}
+		.CustSearch_Small {	
+			margin: 5px 0 0 660px;
+			}
+		.CustSearch_Add {	
+			margin: 135px 0 0 15px;
+			}
+
+        .SearchProject {
+			margin: 80px 0 0 150px;
+			display: none;	
+			}
+        .SearchProject2 {
+			margin: 10px 0 0 10px;
+			width: 123px;
+            height: 700px;
+			display: none;	
+			}
+        .SearchProject3 {
+			margin: 10px 0 0 150px;
+			width: 1020px;
+            height: 60px;
+			display: none;	
+			}
+		.ProjectSearch_Confirm {	
+/*			margin: 585px 0 0 910px;*/
+			margin: 460px 0 0 15px;
+			display: none;	
+			}
+		.ProjectSearch_Cancel {	
+/*			margin: 585px 0 0 15px;*/
+			margin: 585px 0 0 15px;
+			}
+		.ProjectSearch_A2Z {	
+			margin: 470px 0 0 15px;
+			display: none;	
+			}
+		.ProjectSearch_Small {	
+			margin: 5px 0 0 960px;
+			}
+		.ProjectSearch_Search {	
+			margin: 350px 0 0 15px;
+			}
+		.ProjectSearch_Reset {	
+			margin: 470px 0 0 15px;
+			}
+
+
+
+/*------------------------Portal----------------------*/
+
+
+		#Background {	
+            z-index: 0;
+			position:absolute;
+            color: dark grey;
+            border: 0px;
+			}
+		.Background_ChangeOptions {	
+			margin: 320px 0 0 0px;
+			}
+		.Background_DocsOptions {	
+			margin: 300px 0 0 0px;
+			}
+		.Background_Documentation {	
+			margin: 610px 0 0 10px;
+			}
+		.Background_FAQ {	
+			margin: 410px 0 0 10px;
+			}
+		.Background_Firefox {	
+			margin: 330px 0 0 10px;
+			}
+		.Background_Notifications {	
+			margin: 330px 0 0 10px;
+			}
+		.Background_Reference {	
+			margin: 610px 0 0 10px;
+			}
+		.Background_Risk {	
+			margin: 610px 0 0 10px;
+			}
+		.Background_Tools {	
+			margin: 610px 0 0 10px;
+			}
+
+/*------------------------ATEX----------------------*/
+		.Button_ATEXAssessment {	
+			margin: 65px 0 0 30px;
+			}
+		.Button_ATEXUserIns {	
+			margin: 65px 0 0 310px;
+			}
+		.Button_ATEXClose {	
+			margin: 360px 0 0 610px;
+			}
+		.Button_ATEXConformityEx {	
+			margin: 100px 0 0 640px;
+			}
+		.Button_ATEXDeclarationEx {	
+			margin: 185px 0 0 640px;
+			}
+		.Button_ATEXCat2G {	
+			margin: 175px 0 0 30px;
+			}
+		.Button_ATEXCat3G {	
+			margin: 175px 0 0 100px;
+			}
+		.Button_ATEXCat2D {	
+			margin: 175px 0 0 170px;
+			}
+		.Button_ATEXCat3D {	
+			margin: 175px 0 0 240px;
+			}
+		.Button_ATEXCatM2 {	
+			margin: 175px 0 0 310px;
+			}
+
+
+		.Button_ATEXStNeots {	
+			margin: 230px 0 0 30px;
+			}
+		.Button_ATEXWakefield {	
+			margin: 230px 0 0 150px;
+			}
+
+/*------------------------Calculations----------------------*/
+
+		.Button_Calculations {	
+			margin: 250px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_Calculations2 {	
+			margin: 160px 0 0 300px;
+            z-index: 2;
+			}
+		.Button_CalculationsClose {	
+			margin: 560px 0 0 610px;
+            z-index: 2;
+			}
+		.Button_CalcsAccSize {	
+			margin: 125px 0 0 285px;
+            z-index: 2;
+			}
+		.Button_CalcsAccVolume {	
+			margin: 125px 0 0 370px;
+            z-index: 2;
+			}
+		.Button_CalcsCylBasic {	
+			margin: 275px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_CalcsCylDiff {	
+			margin: 275px 0 0 115px;
+            z-index: 2;
+			}
+		.Button_CalcsCylAux {	
+			margin: 275px 0 0 200px;
+            z-index: 2;
+			}
+		.Button_CalcsCylSingle {	
+			margin: 275px 0 0 285px;
+            z-index: 2;
+			}
+		.Button_CalcsCylDouble {	
+			margin: 275px 0 0 370px;
+            z-index: 2;
+			}
+		.Button_CalcsCylFreq {	
+			margin: 275px 0 0 455px;
+            z-index: 2;
+			}
+		.Button_CalcsCylInertia {	
+			margin: 275px 0 0 540px;
+            z-index: 2;
+			}
+		.Button_CalcsCylDecomp {	
+			margin: 275px 0 0 625px;
+            z-index: 2;
+			}
+		.Button_CalcsOrificeSize {	
+			margin: 125px 0 0 455px;
+            z-index: 2;
+			}
+		.Button_CalcsPropSize {	
+			margin: 425px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_CalcsPropDiff {	
+			margin: 425px 0 0 115px;
+            z-index: 2;
+			}
+		.Button_CalcsPropMult {	
+			margin: 425px 0 0 200px;
+            z-index: 2;
+			}
+		.Button_CalcsPropSing {	
+			margin: 425px 0 0 285px;
+            z-index: 2;
+			}
+		.Button_CalcsOilVisc {	
+			margin: 425px 0 0 455px;
+            z-index: 2;
+			}
+		.Button_CalcsMiscChem {	
+			margin: 425px 0 0 625px;
+            z-index: 2;
+			}
+		.Button_CalcsHydraulicFormulas {	
+			margin: 425px 0 0 540px;
+            z-index: 2;
+			}
+		.Button_CalcsResCooling {	
+			margin: 125px 0 0 625px;
+            z-index: 2;
+			}
+		.Button_CalcsPipeSize {	
+			margin: 125px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_CalcsPipeDrop {	
+			margin: 125px 0 0 115px;
+            z-index: 2;
+			}
+
+/*------------------------Change Notes----------------------*/
+
+		.Button_ChangeOptions {	
+			margin: 160px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_ChangeOptionsClose {	
+			margin: 270px 0 0 240px;
+			}
+		.Button_ChangeReport {	
+			margin: 120px 0 0 50px;
+			}
+		.Button_ChangeOpen_ReportsClose {	
+			margin: 605px 0 0 1090px;
+			display:none;
+			bottom: 23;
+			}
+		.Button_ChangeReports-Open {	
+			margin: 125px 0 0 1090px;
+			display:none;
+            z-index: 2;
+			}
+		.Button_ChangeReports-Cost {	
+			margin: 205px 0 0 1090px;
+			display:none;
+            z-index: 2;
+			}
+		.Button_ChangeReports-Green {	
+			margin: 285px 0 0 1090px;
+			display:none;
+            z-index: 2;
+			}
+		.Button_ChangeReports-Blue {	
+			margin: 365px 0 0 1090px;
+			display:none;
+            z-index: 2;
+			}
+		.Button_ChangeReports-Red {	
+			margin: 445px 0 0 1090px;
+			display:none;
+            z-index: 2;
+			}
+		.Button_ChangeReports-Orders {	
+			margin: 525px 0 0 1090px;
+			display:none;
+			}
+		.Button_Change {	
+			margin: 200px 0 0 50px;
+			}
+		.Button_NewChange {	
+			margin: 50px 0 0 50px;
+			}
+
+/*------------------------Commercial Guidelines----------------------*/
+
+		.Button_CommercialGuidelines {	
+			margin: 160px 0 0 300px;
+            z-index: 2;
+			}
+		.Button_CommercialGuidelinesClose {	
+			margin: 560px 0 0 610px;
+            z-index: 2;
+			}
+		.Button_CommercialMargin {	
+			margin: 195px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_CommercialAuthorisation {	
+			margin: 195px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_CommercialAspects {	
+			margin: 277px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_CommercialContractTerms {	
+			margin: 277px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_CommercialLegal {	
+			margin: 500px 0 0 30px;
+            z-index: 2;
+			}
+
+
+/*------------------------Design CheckLists----------------------*/
+		.Button_DesignCheckListsClose {	
+			margin: 360px 0 0 610px;
+			}
+		.Button_DesignCheckHydCirc {	
+			margin: 105px 0 0 30px;
+			}
+		.Button_DesignCheckHydGA {	
+			margin: 105px 0 0 100px;
+			}
+		.Button_DesignCheckReservoir {	
+			margin: 105px 0 0 170px;
+			}
+		.Button_DesignCheckFabrications {	
+			margin: 105px 0 0 240px;
+			}
+		.Button_DesignCheckManifolds {	
+			margin: 105px 0 0 310px;
+			}
+		.Button_DesignCheckFittings {	
+			margin: 105px 0 0 380px;
+			}
+		.Button_DesignCheckElecCirc {	
+			margin: 105px 0 0 450px;
+			}
+		.Button_DesignCheckElecGA {	
+			margin: 105px 0 0 520px;
+			}
+
+
+/*------------------------Documents----------------------*/
+
+		.Button_Docs {	
+			margin: 160px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_DocsClose {	
+			margin: 270px 0 0 240px;
+			}
+		.Button_Docs_ReportsClose {	
+			margin: 605px 0 0 1090px;
+			display:none;
+			bottom: 23;
+			}
+		.Button_DocsTitles {	
+			margin: 115px 0 0 50px;
+            z-index: 2;
+			}
+		.Button_DocsSalesOrder {	
+			margin: 115px 0 0 140px;
+            z-index: 2;
+			}
+		.Button_DocsDrgNo {	
+			margin: 115px 0 0 230px;
+            z-index: 2;
+			}
+		.Button_DocsOverdue {	
+			margin: 250px 0 0 50px;
+            z-index: 2;
+			}
+		.Button_DocsWeekToGo {	
+			margin: 250px 0 0 140px;
+            z-index: 2;
+			}
+		.Button_Documentation {	
+			margin: 180px 0 0 10px;
+			}
+		.Button_DocumentationClose {	
+			margin: 570px 0 0 890px;
+			}
+		.Button_DrawingRegister {	
+			margin: 280px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_IssueRecord {	
+			margin: 280px 0 0 300px;
+            z-index: 2;
+			}
+		.Button_ITPNo {	
+			margin: 280px 0 0 585px;
+            z-index: 2;
+			}
+		.Button_Indexes {	
+			margin: 365px 0 0 15px;
+            z-index: 2;
+			}
+
+
+/*------------------------Document Templates----------------------*/
+		.Button_DocumentTemplatesClose {	
+			margin: 360px 0 0 610px;
+			}
+		.Button_DocumentTemplatesCable {	
+			margin: 105px 0 0 30px;
+			}
+		.Button_DocumentTemplatesPanel {	
+			margin: 105px 0 0 100px;
+			}
+		.Button_DocumentTemplatesHose {	
+			margin: 105px 0 0 170px;
+			}
+		.Button_DocumentTemplatesHPU {	
+			margin: 105px 0 0 240px;
+			}
+		.Button_DocumentTemplatesGantt {	
+			margin: 105px 0 0 310px;
+			}
+		.Button_DocumentTemplatesITP {	
+			margin: 190px 0 0 30px;
+			}
+		.Button_DocumentTemplatesRSA4{	
+			margin: 190px 0 0 100px;
+			}
+		.Button_DocumentTemplatesRSA4A3 {	
+			margin: 190px 0 0 170px;
+			}
+		.Button_DocumentTemplatesRSA4A3A4 {	
+			margin: 190px 0 0 240px;
+			}
+		.Button_DocumentTemplatesPDA4 {	
+			margin: 190px 0 0 170px;
+			}
+		.Button_DocumentTemplatesPDA4A3 {	
+			margin: 190px 0 0 380px;
+			}
+		.Button_DocumentTemplatesPDA4A3A4 {	
+			margin: 190px 0 0 450px;
+			}
+		.Button_DocumentTemplatesSPA4 {	
+			margin: 190px 0 0 310px;
+			}
+		.Button_DocumentTemplatesSPA4A3 {	
+			margin: 275px 0 0 100px;
+			}
+		.Button_DocumentTemplatesSPA4A3A4 {	
+			margin: 275px 0 0 170px;
+			}
+		.Button_DocumentTemplatesSOA4 {	
+			margin: 190px 0 0 240px;
+			}
+		.Button_DocumentTemplatesSOA4A3 {	
+			margin: 275px 0 0 310px;
+			}
+		.Button_DocumentTemplatesSOA4A3A4 {	
+			margin: 275px 0 0 380px;
+			}
+		.Button_DocumentTemplatesSPFAT {	
+			margin: 190px 0 0 380px;
+			}
+
+
+/*------------------------Engineering IT----------------------*/
+
+		.Button_EngIT-Active {	
+			margin: 320px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_EngIT-Future {	
+			margin: 320px 0 0 585px;
+            z-index: 2;
+			}
+		.Button_EngIT-Helpdesk {	
+			margin: 200px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_EngIT-Historical {	
+			margin: 320px 0 0 300px;
+            z-index: 2;
+			}
+		.Button_EngITExtrasClose {
+			margin: 605px 0 0 1090px;
+			display:none;
+			bottom: 23;
+            z-index: 2;
+			}
+
+
+/*------------------------Engineering Tools----------------------*/
+
+		.Button_BlackBook {	
+			margin: 280px 0 0 300px;
+            z-index: 2;
+			}
+		.Button_Champions {	
+/*			margin: 400px 0 0 300px; */
+			margin: 400px 0 0 85px;
+            z-index: 2;
+/*			display:none;*/
+			}
+		.Button_DesignLibrary {	
+			margin: 400px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_PuStandards {	
+			margin: 280px 0 0 15px;
+            z-index: 2;
+			}
+
+
+/*------------------------Reference----------------------*/
+
+		.Button_ABWiki {	
+			margin: 480px 0 0 435px;
+            z-index: 1;
+			}
+		.Button_ATEX {	
+			margin: 480px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_BestPractice {	
+			margin: 480px 0 0 505px;
+            z-index: 1;
+			}
+		.Button_DesignCheckLists {	
+			margin: 480px 0 0 225px;
+            z-index: 2;
+			}
+		.Button_DocumentTemplates {	
+			margin: 480px 0 0 85px;
+            z-index: 2;
+			}
+		.Button_EngineeringCertification {	
+			margin: 480px 0 0 365px;
+            z-index: 2;
+			}
+		.Button_EngineeringCertificationClose {	
+			margin: 560px 0 0 610px;
+            z-index: 2;
+			}
+		.Button_EngineeringReference {	
+			margin: 400px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_EngineeringReferenceClose {	
+			margin: 560px 0 0 610px;
+            z-index: 2;
+			}
+		.Button_Export {	
+			margin: 160px 0 0 585px;
+            z-index: 1;
+			}
+		.Button_ExportClose {	
+			margin: 560px 0 0 870px;
+            z-index: 2;
+			}
+		.Button_PreCheck {	
+			margin: 160px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_PreCheckClose {	
+			margin: 560px 0 0 610px;
+            z-index: 2;
+			}
+		.Button_Risk {	
+			margin: 480px 0 0 295px;
+            z-index: 1;
+			}
+		.Button_TransmittalTemplates {	
+			margin: 480px 0 0 155px;
+            z-index: 2;
+			}
+
+/*------------------------Reference/General Reference----------------------*/
+		.Button_EmailArchiving {	
+			margin: 230px 0 0 360px;
+            z-index: 2;
+			}
+		.Button_EmailArchivingInstructions {	
+			margin: 310px 0 0 360px;
+            z-index: 2;
+			}
+		.Button_MediaDir {	
+			margin: 120px 0 0 360px;
+            z-index: 2;
+			}
+		.Button_Moogle {	
+			margin: 230px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_Moogle2 {	
+			margin: 160px 0 0 585px;
+            z-index: 2;
+			}
+		.Button_MoogleTraining {	
+			margin: 310px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_MoogleTraining2 {	
+			margin: 160px 0 0 655px;
+            z-index: 2;
+			}
+		.Button_OrganisationCharts {	
+			margin: 250px 0 0 360px;
+			margin: 120px 0 0 30px;
+            z-index: 2;
+			}
+
+			
+/*------------------------Reference/Pre-Engineering Checks----------------------*/
+		.Button_PreCheckCheck {	
+			margin: 55px 0 0 550px;
+            z-index: 2;
+			}
+		.Button_PreCheckIncoterms {	
+			margin: 270px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_PreCheckLabour {	
+			margin: 392px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_PreCheckStdterms {	
+			margin: 408px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_PreCheckContractTerms {	
+			margin: 408px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_PreCheckEmailterms {	
+			margin: 408px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_PreCheckDCGBTerms {	
+			margin: 490px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_PreCheckCoreContracts {	
+			margin: 490px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_PreCheckKeyIssues {	
+			margin: 326px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_PreCheckConfidentiality {	
+			margin: 570px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_PreCheckCourtesy {	
+            z-index: 2;
+			margin: 570px 0 0 355px;
+			}
+
+/*------------------------Reference/Quote&Order----------------------*/
+		.Button_QuoteSntTemplate {	
+			margin: 240px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_QuoteWafTemplate {	
+			margin: 240px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_QuoteBrokenLinks {	
+			margin: 250px 0 0 600px;
+            z-index: 2;
+			}
+		.Button_OrderAckSntTemplate {	
+			margin: 350px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_OrderAckWafTemplate {	
+			margin: 350px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_QuoteGoto {	
+			margin: 115px 0 0 355px;
+            z-index: 2;
+			}
+		.Button_QuoteBlackBook {	
+			margin: 195px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_QuoteLabour {	
+			margin: 535px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_QuoteSocos {	
+			margin: 135px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_QuoteYPPC {	
+			margin: 115px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_QuoteCourtesy {	
+			margin: 275px 0 0 30px;
+            z-index: 2;
+			}
+		.Button_QuoteJobReview {	
+			margin: 275px 0 0 100px;
+            z-index: 2;
+			}
+		.Button_QuoteQuickCheck {	
+			margin: 275px 0 0 170px;
+            z-index: 2;
+			}
+		.Button_QuoteTemplate {	
+			margin: 275px 0 0 240px;
+            z-index: 2;
+			}
+		.Button_QuoteContractRelease {	
+			margin: 275px 0 0 310px;
+            z-index: 2;
+			}
+
+
+/*------------------------Reference/Risk----------------------*/
+		.Button_RiskClose {	
+			margin: 560px 0 0 610px;
+			}
+		.Button_RiskDesign {	
+			margin: 85px 0 0 455px;
+			}
+		.Button_RiskDOISNwoElec {	
+			margin: 295px 0 0 30px;
+			}
+		.Button_RiskDOISNPanel {	
+			margin: 295px 0 0 115px;
+			}
+		.Button_RiskDOISNControl {	
+			margin: 295px 0 0 200px;
+			}
+		.Button_RiskDOISNElec {	
+			margin: 295px 0 0 285px;
+			}
+		.Button_RiskDOISNFA {	
+			margin: 295px 0 0 370px;
+			}
+		.Button_RiskDOIWAFwoElec {	
+			margin: 295px 0 0 455px;
+			}
+		.Button_RiskDOIWAFPanel {	
+			margin: 295px 0 0 540px;
+			}
+		.Button_RiskDOIWAFControl {	
+			margin: 295px 0 0 625px;
+			}
+		.Button_RiskGuide {	
+			margin: 85px 0 0 30px;
+			}
+		.Button_RiskManualOp {	
+			margin: 410px 0 0 30px;
+			}
+		.Button_RiskManualAssy {	
+			margin: 495px 0 0 30px;
+			}
+		.Button_RiskMasterStd {	
+			margin: 200px 0 0 30px;
+			}
+		.Button_RiskMasterElec {	
+			margin: 200px 0 0 115px;
+			}
+		.Button_RiskMasterContain {	
+			margin: 200px 0 0 200px;
+			}
+		.Button_RiskMasterDiesel {	
+			margin: 200px 0 0 285px;
+			}
+		.Button_RiskMasterMobile {	
+			margin: 200px 0 0 370px;
+			}
+		.Button_RiskMasterProject {	
+			margin: 200px 0 0 455px;
+			}
+		.Button_RiskSpec {	
+			margin: 85px 0 0 285px;
+			}
+		.Button_RiskSummary {	
+			margin: 85px 0 0 625px;
+			}
+		.Button_RiskTraining {	
+			margin: 85px 0 0 115px;
+			}
+
+
+/*------------------------Transmittal Templates----------------------*/
+		.Button_TransmittalTemplatesClose {	
+			margin: 360px 0 0 610px;
+			}
+		.Button_TransmittalChange {	
+			margin: 105px 0 0 30px;
+			}
+		.Button_TransmittalDocument {	
+			margin: 105px 0 0 100px;
+			}
+		.Button_TransmittalDesignChange {	
+			margin: 105px 0 0 170px;
+			}
+
+
+
+
+		.Button_FirefoxClose {	
+            z-index: 0;
+			margin: 310px 0 0 520px;
+			}
+		.Button_IH_Wiki {	
+			margin: 520px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_IH_Pump {	
+			margin: 520px 0 0 85px;
+            z-index: 2;
+			}
+		.Button_IH_App {	
+			margin: 520px 0 0 155px;
+            z-index: 2;
+			}
+
+		.Button_Planner {	
+/*			margin: 400px 0 0 585px; */
+			margin: 400px 0 0 155px;
+            z-index: 2;
+/*			display:none;*/
+			}
+		.Button_DesignQuotation {	
+			margin: 280px 0 0 15px;
+            z-index: 2;
+			}
+		.Button_DesignQuotationClose {	
+			margin: 560px 0 0 610px;
+            z-index: 2;
+			}
+
+		.Button_Reference {	
+			margin: 300px 0 0 10px;
+			}
+		.Button_ReferenceClose {	
+			margin: 570px 0 0 890px;
+			}
+
+
+		.Button_Tools {	
+			margin: 420px 0 0 10px;
+			}
+		.Button_ToolsClose {	
+			margin: 570px 0 0 890px;
+			}
+		.Button_CopyFrom {	
+			margin: 400px 0 0 225px;
+            z-index: 2;
+			}
+		.Button_VendorNumbers {	
+			margin: 400px 0 0 295px;
+            z-index: 2;
+			}
+		.Button_CADPDM {	
+			margin: 400px 0 0 365px;
+            z-index: 2;
+			}
+		.Button_OEMSales {	
+			margin: 400px 0 0 455px;
+            z-index: 2;
+			}
+		.Button_UKSales {	
+			margin: 400px 0 0 525px;
+            z-index: 2;
+			}
+		.Button_MANFBlue {	
+			margin: 400px 0 0 615px;
+            z-index: 2;
+			}
+
+
+        .Change_Options {
+			margin: 100px 0 0 360px;
+			display: none;
+			height:390px; 
+			width:350px;
+			background-image:url('../images/PEP-ETO/Background-Wheel3.jpg');
+            z-index: 2;
+			}
+        .ChangeOpen_Reports {
+			margin: 10px 0 0 57px;
+			display: none;
+            z-index: 4;
+			}
+        .DesignLibrary {
+			margin: 10px 0 0 60px;
+			display: none;
+			}
+        .DocsMain {
+			margin: 10px 0 0 60px;
+			display: none;
+            z-index: 4;
+			}
+        .Docs_Options {
+			margin: 100px 0 0 360px;
+			display: none;
+			height:390px; 
+			width:350px;
+			background-image:url('../images/PEP-ETO/Background-Wheel3.jpg');
+            z-index: 3;
+			}
+        .Documentation {
+			background-image:url('../images/PEP-eto/background-Wheel2.jpg');
+			margin: 10px 0 0 60px;
+			display: none;
+			}
+        .EngIT {
+			background-image:url('../images/PEP-eto/background-Ennerdale2.jpg');
+			margin: 10px 0 0 60px;
+			display: none;
+			}
+        .EngIT_Detail {
+			margin: 10px 0 0 57px;
+			height: 95%;
+			display: none;
+            z-index: 3;
+			overflow:hidden;
+			}
+        .Champions {
+			margin: 10px 0 0 60px;
+			display: none;
+			}
+        .Planners {
+			margin: 10px 0 0 60px;
+			display: none;
+			}
+        .Reference {
+			background-image:url('../images/PEP-eto/background-Astute2a-small.jpg');
+			margin: 10px 0 0 60px;
+			display: none;
+			}
+        .Tools {
+			background-image:url('../images/PEP-eto/background-Lifeboat-smalla.jpg');
+			margin: 10px 0 0 60px;
+			display: none;
+			}
+        .ATEX {
+			margin: 140px 0 0 200px;
+			width: 720px;
+            height: 480px;
+			background-image:url('../images/PEP-ETO/Background-Barrier2.jpg');
+			display: none;
+            z-index: 2;
+			}
+        .Calculations {
+			margin: 20px 0 0 200px;
+			width: 720px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-Bridge_small.jpg');
+			display: none;
+            z-index: 2;
+			}
+        .CommercialExport {
+			margin: 20px 0 0 70px;
+			width: 980px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-Bridge2.jpg');
+			display: none;
+            z-index: 1;
+			}
+        .DesignCheckLists {
+			margin: 140px 0 0 200px;
+			width: 720px;
+            height: 480px;
+			background-image:url('../images/PEP-ETO/Background-Barrier2.jpg');
+			display: none;
+            z-index: 2;
+			}
+        .DocumentTemplates {
+			margin: 140px 0 0 200px;
+			width: 720px;
+            height: 480px;
+			background-image:url('../images/PEP-ETO/Background-Barrier2.jpg');
+			display: none;
+            z-index: 2;
+			}
+        .ExportOptions-World {
+			margin: 300px 0 0 10px;
+			width: 100px;
+            height: 100px;
+			display: none;
+			opacity: 0.2;
+            z-index: 1;
+			}
+        .ExportOptions-Europe {
+			margin: 300px 0 0 10px;
+			width: 100px;
+            height: 300px;
+			display: none;
+			opacity: 0.2;
+            z-index: 1;
+			}
+        .ExportOptions-Asia {
+			margin: 300px 0 0 10px;
+			width: 100px;
+            height: 150px;
+			display: none;
+			opacity: 0.2;
+            z-index: 1;
+			}
+        .ExportOptions-Australia {
+			margin: 300px 0 0 10px;
+			width: 100px;
+            height: 100px;
+			display: none;
+			opacity: 0.2;
+            z-index: 1;
+			}
+        .ExportOptions-NorthAmerica {
+			margin: 300px 0 0 10px;
+			width: 100px;
+            height: 100px;
+			display: none;
+			opacity: 0.2;
+            z-index: 1;
+			}
+        .ExportOptions-SouthAmerica {
+			margin: 300px 0 0 10px;
+			width: 100px;
+            height: 100px;
+			display: none;
+			opacity: 0.2;
+            z-index: 1;
+			}
+        .CommercialGuidelines {
+			margin: 20px 0 0 200px;
+			width: 720px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-H14-small.jpg');
+			display: none;
+            z-index: 1;
+			}
+        .DesignQuotation {
+			margin: 20px 0 0 200px;
+			width: 720px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-Type22a-small.jpg');
+			display: none;
+            z-index: 1;
+			}
+        .EngineeringReference {
+			margin: 20px 0 0 200px;
+			width: 720px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-Type23a-small.jpg');
+			display: none;
+            z-index: 1;
+			}
+        .Export {
+			margin: 20px 0 0 200px;
+			width: 720px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-Bridge_small.jpg');
+			display: none;
+            z-index: 1;
+			}
+        .FAQ {
+            z-index: 1;
+			margin: 90px 0 0 200px;
+			width: 720px;
+            height: 480px;
+			background-image:url('../images/PEP-ETO/Background-Barrier2.jpg');
+			display: none;
+			}
+       .Firefox {
+			margin: 170px 0 0 250px;
+			width: 600px;
+            height: 400px;
+			background-image:url('../images/PEP-ETO/Background-Train2.jpg');
+/*			display: none; */
+            z-index: 3;
+			}
+        .Gallery {
+			margin: 20px 0 0 20px;
+			width: 1150px;
+            height: 640px;
+            height: 94%;
+			background-position: 50% 50%;
+			background-repeat:no-repeat;
+			background-image:url('../images/PEP-ETO/Background-Wheel4.jpg');
+            z-index: 5;
+			display: none;
+			}
+		.Button_GalleryClose {	
+            z-index: 0;
+			margin: 0 0 0 1070px; 
+			position: absolute;
+			bottom: 15;
+			}
+        .Risk {
+			margin: 20px 0 0 200px;
+			width: 720px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-Bridge_small.jpg');
+			display: none;
+            z-index: 2;
+			}
+        .PreCheck {
+			margin: 20px 0 0 200px;
+			width: 720px;
+            height: 680px;
+			background-image:url('../images/PEP-ETO/Background-Bridge_small.jpg');
+			display: none;
+            z-index: 1;
+			}
+        .TransmittalTemplates {
+			margin: 140px 0 0 200px;
+			width: 720px;
+            height: 480px;
+			background-image:url('../images/PEP-ETO/Background-Barrier2.jpg');
+			display: none;
+            z-index: 2;
+			}
+        .Updates {
+			margin: 20px 0 0 240px;
+			width: 630px;
+            height: 640px;
+            height: 94%;
+			background-position: 0% 50%;
+			background-repeat:no-repeat;
+			background-image:url('../images/PEP-ETO/Background-Wheel4.jpg');
+            z-index: 2;
+			}
+        .Launches {
+			margin: 20px 0 0 240px;
+			width: 630px;
+            height: 640px;
+            height: 94%;
+			background-position: 0% 50%;
+			background-repeat:no-repeat;
+			background-image:url('../images/PEP-ETO/Background-Wheel4.jpg');
+            z-index: 10;
+			display: none; 
+			}
+		.Button_LaunchesClose {	
+            z-index: 0;
+			margin: 0 0 0 535px; 
+			position: absolute;
+			bottom: 15;
+			}
+        .User_Info {
+/*			margin: 20px 0 0 10px; */
+			position: absolute;
+			top:20;
+			left:10;
+			right:10;
+			margin: auto;
+/*			width: 1015px; */
+			width: auto-100;
+            height: 640px;
+            height: 94%;
+			background-position: 0% 50%;
+			background-repeat:no-repeat;
+			background-image:url('../images/PEP-ETO/Background-Fugro.png');
+            z-index: 2;
+			display: none;
+			}
+        #User_Info_frame {
+            z-index: 5;
+		}
+		.Background_Updates {	
+			margin: 0 0 0 10px;
+			position: absolute;
+			bottom: 5;
+			}
+		.Button_UpdatesClose {	
+            z-index: 0;
+			margin: 0 0 0 535px; 
+			position: absolute;
+			bottom: 15;
+			}
+/*		.Background_User_Info {	
+            z-index: -10;
+			margin: 0 0 0 10px;
+			position: absolute;
+			bottom: 5;
+			display: none;
+			}  */
+		.Button_User_InfoClose {	
+            z-index: 0;
+/*			margin: 0 0 0 941px; */
+			position: absolute;
+			top: 5;
+			right: 25;
+			}
+
+		.StatusKey {	
+			margin: 2px 0 0 420px;
+            z-index: 0;
+			display: none;
+			}
+
+
+
+
+		.Wait {	
+			width: 200px;
+			margin: 120px 0 0 150px;
+            z-index: 5;
+			position:absolute;
+            color: dark grey;
+			background-color: #ffffff; 
+			border-radius: 10px;
+			-moz-box-shadow: 3px 3px 4px #888;
+			-webkit-box-shadow: 3px 3px 4px #888;
+			box-shadow: 3px 3px 10px #888;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+			filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+			display: none;
+			}
+
+        .ContractInfo {
+			display: none;	
+/*			background-image:url('images/Index0Back.jpg');*/
+			margin: 75px 0 0 320px;
+			width: 460px;
+            height: 600px;
+			}
+		.Contract_Confirm {	
+			margin: 495px 0 0 385px;
+			}
+		.Contract_Back {	
+			margin: 495px 0 0 10px;
+			}
+        .SearchInfo {
+			display: none;	
+			overflow: hidden;
+			background-image:url('../images/Index1Back.jpg');
+			}
+        .RegisterEnquiry {
+			display: none;	
+			}
+        .Createfolder {
+			display: none;	
+
+			margin: 800px 0 0 300px;
+			width: 500px;
+            height: 150x;
+			}
+        .Folders {
+			display: none;	
+			background-image:url('../images/Index0Back.jpg');
+			}
+
+        .Main {
+			display: none;
+			margin: 300px 0 0 10px;
+			width: 150px;
+            height: 300px;
+			}
+        .Contract {
+			display: none;
+			margin: 10px 0 0 1000px;
+			width: 200px;
+            height: 150px;
+			}
+
+
+
+</STYLE>

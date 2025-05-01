@@ -1,0 +1,39 @@
+body {
+    background-image: url("/static/images/Background-Bridge.png");
+    background-size: cover; /* scales to fill screen */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* ensures full height on some browsers */
+    margin: 0;
+    font-family: sans-serif;
+}
+.Alpha_Typ {
+    width: 970px;
+    font:13px arial,sans-serif;
+    z-index: 0;
+    position:absolute;
+    color: dark grey;           
+    border: 1px solid grey;
+    background-color: #ffffff; 
+    background-color: #e0e0e0; 
+    border-radius: 10px;
+    -moz-box-shadow: 3px 3px 4px #888;
+    -webkit-box-shadow: 3px 3px 4px #888;
+    box-shadow: 3px 3px 10px #888;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888');
+    background: #e0e0e0; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left,rgba(170,170,170,0.4), rgba(170,170,170,0)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(right,rgba(170,170,170,0.4), rgba(170,170,170,0)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(right,rgba(170,170,170,0.4), rgba(170,170,170,0)); /*Fx 3.6-15*/
+    background: linear-gradient(to right, rgba(170,170,170,0.4), rgba(170,170,170,0)); /*Standard*/
+}
+#titlebar {	
+    margin: 5px 0 0 10px;
+}
+#input {	
+    margin: 180px 0 0 10px;
+}
+#output {	
+    margin: 250px 0 0 10px;
+}

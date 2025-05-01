@@ -8,8 +8,6 @@ _mock_collection = None
 def set_mock_collection(mock):
     global _mock_collection
     _mock_collection = mock
-#    print ("TESTING2")
-#    print (_mock_collection)
     
 def get_post_collection():
     global _mock_collection
@@ -28,7 +26,12 @@ def get_post_collection():
 def Mbox(title, text, style):
     return ctypes.windll.user32.MessageBoxW(0, text, title, style)
 
-def add_mongodata(customer,salesorder,engineer):
+def add_mongodata(customer=None, salesorder=None, engineer=None):
+    # Apply defaults if None or empty
+    customer = customer.strip() if customer else "Unknown Customer"
+    salesorder = salesorder.strip() if salesorder else "No Sales Order"
+    engineer = engineer.strip() if engineer else "Unassigned"
+
     posts = get_post_collection()
     post = {
         "Customer": customer,
