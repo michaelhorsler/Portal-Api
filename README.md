@@ -370,7 +370,7 @@ kubectl get pods -w
 HPA scaling can be proven by utilising 'hey' to provide a limited loading on to the designated portalapi application.
 
 ```
-hey -z 1m -c 50 http://74.177.168.170:5000
+hey -z 1m -c 50 http://74.177.168.170:5000/hpa
 ```
 # OAuth Authentication
 

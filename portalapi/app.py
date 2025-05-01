@@ -98,7 +98,6 @@ def create_app():
 
 
     @app.route('/hpa')
-    @github_login_required
     def hpa_loading():
         sum(i*i for i in range(10000000))
     
