@@ -1,9 +1,10 @@
 FROM python:buster AS base
 
 # Perform common operations, dependency installation etc...
-RUN pip install poetry
-# RUN pip uninstall -y setuptools
-# RUN pip install setuptools==39.1.0
+# Install Poetry and the export plugin
+RUN pip install poetry \
+ && poetry self add poetry-plugin-export
+
 WORKDIR /app
 COPY poetry.toml ./
 COPY pyproject.toml poetry.lock ./
