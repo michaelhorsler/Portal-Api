@@ -1,32 +1,47 @@
-FROM python:3.9-slim AS base
+# -------- Base Image --------
+    FROM python:3.9-slim AS base
 
-# Upgrade base pip & setuptools to avoid vulnerable preinstalled versions
-RUN pip install --upgrade pip setuptools
-
-# Install Poetry and the export plugin
-RUN pip install --no-cache-dir poetry==1.8.2 \
- && poetry self add poetry-plugin-export@1.6.0
-
-WORKDIR /app
-
-# Copy and install project dependencies
-COPY poetry.toml ./   
-COPY pyproject.toml poetry.lock ./
-COPY portalapi portalapi
-RUN poetry install --no-root
-
-ENV WEBSITES_PORT=5000
-EXPOSE ${WEBSITES_PORT}
-
-COPY . .
-
-FROM base AS test
-COPY .env.test .env
-ENTRYPOINT ["poetry", "run", "pytest"]
-
-FROM base AS production
-ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
-
-FROM base AS development
-ENV FLASK_ENV=development
-ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+    # Install dependencies for Poetry and system utilities
+    RUN apt-get update && apt-get install -y --no-install-recommends \
+        curl \
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
+    
+    # Upgrade pip and setuptools to secure versions
+    RUN pip install --no-cache-dir pip==24.0 setuptools==70.0.0
+    
+    # Install Poetry (compatible with poetry-plugin-export)
+    ENV POETRY_VERSION=1.9.0
+    RUN curl -sSL https://install.python-poetry.org | python3 -
+    ENV PATH="/root/.local/bin:$PATH"
+    
+    # Set working directory early for caching
+    WORKDIR /app
+    
+    # Copy Poetry project files first to leverage Docker caching
+    COPY pyproject.toml poetry.lock poetry.toml ./
+    
+    # Install project dependencies (no-root mode, production deps only)
+    RUN poetry install --no-root --no-interaction --no-ansi
+    
+    # Copy source code
+    COPY portalapi portalapi
+    COPY . .
+    
+    # Set environment variable for Flask
+    ENV WEBSITES_PORT=5000
+    EXPOSE ${WEBSITES_PORT}
+    
+    # -------- Test Image --------
+    FROM base AS test
+    COPY .env.test .env
+    ENTRYPOINT ["poetry", "run", "pytest"]
+    
+    # -------- Production Image --------
+    FROM base AS production
+    ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+    
+    # -------- Development Image --------
+    FROM base AS development
+    ENV FLASK_ENV=development
+    ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+    
