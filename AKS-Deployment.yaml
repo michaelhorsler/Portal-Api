@@ -101,4 +101,27 @@ spec:
               secretKeyRef:
                 name: portalapisecret
                 key: GITHUB_OAUTH_CLIENT_SECRET
+          - name: TRELLO_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: TRELLO_API_KEY
+          - name: TRELLO_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: TRELLO_API_TOKEN
+          - name: TRELLO_API_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: TRELLO_API_SECRET
+          - name: TRELLO_TODO_LIST_ID
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: TRELLO_TODO_LIST_ID
+
+
+
 
