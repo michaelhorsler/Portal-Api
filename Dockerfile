@@ -4,7 +4,7 @@ FROM python:3.9-slim AS base
 RUN pip install --upgrade pip setuptools
 
 # Install Poetry and the export plugin
-RUN pip install poetry \
+RUN pip install --no-cache-dir poetry==1.8.2 \
  && poetry self add poetry-plugin-export
 
 WORKDIR /app
@@ -12,8 +12,8 @@ WORKDIR /app
 # Copy and install project dependencies
 COPY poetry.toml ./   
 COPY pyproject.toml poetry.lock ./
-ADD portalapi portalapi
-RUN poetry install
+COPY portalapi portalapi
+RUN poetry install --no-root
 
 ENV WEBSITES_PORT=5000
 EXPOSE ${WEBSITES_PORT}
