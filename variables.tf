@@ -62,15 +62,18 @@ variable "TRELLO_API_KEY" {
   description = "SECRET for Trello API Key"
   type        = string
   sensitive   = true
-}variable "TRELLO_API_TOKEN" {
+}
+variable "TRELLO_API_TOKEN" {
   description = "SECRET for Trello API Token"
   type        = string
   sensitive   = true
-}variable "TRELLO_API_SECRET" {
+}
+variable "TRELLO_API_SECRET" {
   description = "SECRET for Trello API Secret"
   type        = string
   sensitive   = true
-}variable "TRELLO_TODO_LIST_ID" {
+}
+variable "TRELLO_TODO_LIST_ID" {
   description = "SECRET for Trello ToDo List Board ID"
   type        = string
   sensitive   = true
