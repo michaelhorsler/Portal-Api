@@ -376,7 +376,6 @@ hey -z 1m -c 50 http://74.177.168.170:5000/hpa
 ```
 To retrieve Cluster metrics from cli:
 ```
-kubectl get hpa -n default
 kubectl describe hpa engportalapi-hpa -n default
 ```
 
