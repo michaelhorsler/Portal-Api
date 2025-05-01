@@ -9,8 +9,7 @@
     # Upgrade pip and setuptools to secure versions
     RUN pip install --no-cache-dir pip==24.0 setuptools==70.0.0
     
-    # Install Poetry (compatible with poetry-plugin-export)
-    ENV POETRY_VERSION=1.9.0
+    # Install the latest version of Poetry
     RUN curl -sSL https://install.python-poetry.org | python3 -
     ENV PATH="/root/.local/bin:$PATH"
     
@@ -44,4 +43,5 @@
     FROM base AS development
     ENV FLASK_ENV=development
     ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+    
     
