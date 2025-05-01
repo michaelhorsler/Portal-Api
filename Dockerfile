@@ -2,7 +2,7 @@
 FROM python:3.13-slim AS base
 
 # Upgrade base pip & setuptools to avoid vulnerable preinstalled versions
-RUN pip install --no cache-dir --upgrade pip setuptools
+RUN pip install --upgrade pip setuptools
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
