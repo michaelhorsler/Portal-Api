@@ -1,5 +1,5 @@
 # -------- Base Image --------
-FROM python:3.9-slim AS base
+FROM python:3.13-slim AS base
 
 # Upgrade base pip & setuptools to avoid vulnerable preinstalled versions
 RUN pip install --upgrade pip setuptools
