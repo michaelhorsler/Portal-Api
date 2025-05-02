@@ -85,7 +85,7 @@ jobs:
           name: Terraform
           uses: hashicorp/setup-terraform@v3
         - run: terraform init
-        - run: terraform apply -auto-approve -lock=false
+        - run: terraform apply -auto-approve -lock=false -var="docker_image_tag=${{ github.sha }}"
           env:
             TF_VAR_SERVICE_PRINCIPLE_CLIENT_SECRET: ${{ secrets.TF_VAR_SERVICE_PRINCIPLE_CLIENT_SECRET }}
             TF_VAR_DOCKER_SERVER_USR: ${{ secrets.TF_VAR_DOCKER_SERVER_USR }}

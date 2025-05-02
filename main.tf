@@ -46,7 +46,7 @@ resource "azurerm_linux_web_app" "main" {
 
     site_config {
         application_stack {
-            docker_image_name = "portalapi:latest"
+            docker_image_name = "portalapi:${var.docker_image_tag}"
             docker_registry_url = "https://portalapicontainer.azurecr.io"  
             docker_registry_username = var.DOCKER_SERVER_USR
             docker_registry_password = var.DOCKER_SERVER_PWD
