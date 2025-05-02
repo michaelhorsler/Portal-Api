@@ -4,7 +4,7 @@
     # Set the shell with pipefail for safer script execution (DL4006)
     SHELL ["/bin/bash", "-o", "pipefail", "-c"]
     
-    # Set working directory early for context (DL3045)
+    # Set working directory early (DL3045)
     WORKDIR /app
     
     # Upgrade base pip & setuptools to avoid vulnerable preinstalled versions (DL3013, DL3042)
@@ -14,15 +14,15 @@
     COPY requirements.txt .
     RUN pip install --no-cache-dir -r requirements.txt
     
-    # Install dependencies for Poetry and system utilities (DL3008)
+    # hadolint ignore=DL3008
     RUN apt-get update && apt-get install -y --no-install-recommends \
-        curl=7.88.1-10+deb12u1 \
+        curl \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
     
-    # Pin pip/setuptools to secure versions again explicitly (DL3013, DL3042)
+    # Re-pin pip/setuptools explicitly (DL3013, DL3042)
     RUN pip install --no-cache-dir pip==24.0 setuptools==70.0.0
     
-    # Install the latest version of Poetry safely (DL4006 already handled)
+    # Install the latest version of Poetry
     RUN curl -sSL https://install.python-poetry.org | python3 -
     ENV PATH="/root/.local/bin:$PATH"
     
@@ -53,5 +53,4 @@
     FROM base AS development
     ENV FLASK_ENV=development
     ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
-    
     
