@@ -1,3 +1,7 @@
+variable "docker_image_tag" {
+  description = "Docker image tag (e.g., commit SHA)"
+  type        = string
+}
 variable "SERVICE_PRINCIPLE_CLIENT_SECRET" {
   description = "Password for Azure Service Principle Account"
   type        = string
