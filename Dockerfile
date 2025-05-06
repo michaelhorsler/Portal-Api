@@ -8,7 +8,7 @@
     WORKDIR /app
     
     # Upgrade base pip & setuptools to avoid vulnerable preinstalled versions (DL3013, DL3042)
-    RUN pip install --no-cache-dir --upgrade pip setuptools
+    RUN pip install --no-cache-dir pip==24.0 setuptools==70.0.0
     
     # Copy and install Python dependencies with pinned versions (DL3013, DL3042)
     COPY requirements.txt .
@@ -18,10 +18,7 @@
     RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
-    
-    # Re-pin pip/setuptools explicitly (DL3013, DL3042)
-    RUN pip install --no-cache-dir pip==24.0 setuptools==70.0.0
-    
+       
     # Install the latest version of Poetry
     RUN curl -sSL https://install.python-poetry.org | python3 -
     ENV PATH="/root/.local/bin:$PATH"
