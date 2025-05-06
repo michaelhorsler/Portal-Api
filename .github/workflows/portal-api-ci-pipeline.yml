@@ -2,7 +2,7 @@ name: Continuous Integration and Delivery / Deployment
 # do not trigger workflow on change to readme.md only.
 on: 
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, reopened]
     paths-ignore:
       - 'README.md'
   push:

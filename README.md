@@ -403,6 +403,9 @@ Additional variables added to: AKS PortalAPiSecret, Github secrets and env for O
 
 # To-do
 
+Restrict call on homepage to last 10 mongodb items.
+Buttons to review and display logs??
+
 JIRA board created to monitor tasks and progress.
 
 Cosmos Db added to Azure under free tier. Note: public access enabled but firewall rules need configuring to allow IP access.

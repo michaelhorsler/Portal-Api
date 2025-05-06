@@ -100,5 +100,6 @@ def create_app():
     @app.route('/hpa')
     def hpa_loading():
         sum(i*i for i in range(10000000))
+        return redirect(url_for("index"))
     
     return app

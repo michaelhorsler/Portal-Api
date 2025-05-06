@@ -28,6 +28,16 @@ body {
     background: -moz-linear-gradient(right,rgba(170,170,170,0.4), rgba(170,170,170,0)); /*Fx 3.6-15*/
     background: linear-gradient(to right, rgba(170,170,170,0.4), rgba(170,170,170,0)); /*Standard*/
 }
+#footer{
+    bottom:5;
+    font-size:12px;
+    clear:both;
+    position:relative;
+    z-index:-1;
+    height:0em;
+    text-align:center
+}
+
 #titlebar {	
     margin: 5px 0 0 10px;
 }

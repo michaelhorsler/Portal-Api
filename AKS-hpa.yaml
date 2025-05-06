@@ -15,4 +15,17 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 20
+        averageUtilization: 50
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 300  # Wait 5 minutes before scaling up based on past metrics
+      policies:
+        - type: Percent
+          value: 100                    # Allow doubling of replicas
+          periodSeconds: 10            # Allow scaling every 10 seconds
+    scaleDown:
+      stabilizationWindowSeconds: 300  # Also use 5-minute window for scaling down
+      policies:
+        - type: Percent
+          value: 100                    # Allow cutting replicas in half
+          periodSeconds: 60            # Allow scaling every 60 seconds
