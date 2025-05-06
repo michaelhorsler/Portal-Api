@@ -43,10 +43,10 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
- #     - name: Lint Dockerfile with Hadolint
- #       uses: hadolint/hadolint-action@v3.1.0
- #       with:
- #         dockerfile: Dockerfile
+      - name: Lint Dockerfile with Hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
 
       - name: Run container tests
         run: docker run portalapi:test
