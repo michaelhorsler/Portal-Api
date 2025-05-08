@@ -109,3 +109,38 @@ resource "azurerm_cosmosdb_mongo_database" "main" {
   resource_group_name = data.azurerm_cosmosdb_account.main.resource_group_name
   account_name        = data.azurerm_cosmosdb_account.main.name
 }
+
+
+resource "azurerm_kubernetes_cluster" "main" {
+  name                = "portalapiAKSCluster"
+  location            = data.azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
+  dns_prefix          = "portalapiA-PortalApi-50ef37"
+
+  default_node_pool {
+    name       = "nodepool1"
+    node_count = 2
+    vm_size    = "Standard_l8s_v3"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      linux_profile,
+      default_node_pool[0].node_count  # In case autoscaling modifies it
+    ]
+  }
+
+  tags = {
+    Environment = "Production"
+  }
+}
+
+resource "azurerm_role_assignment" "aks_acr" {
+  scope                = data.azurerm_container_registry.acr.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_kubernetes_cluster.main.kubelet_identity[0].client_id
+}

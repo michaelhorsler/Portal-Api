@@ -297,6 +297,7 @@ FLASK_DEBUG
 SECRET_KEY
 WEBSITES_PORT
 ```
+Terraform.tfvars file kept up to date to hold variables for local plan check and build outside of the CICD Pipeline.
 
 # Container Orchestraion via Azure Kubernetes Service (AKS)
 
