@@ -5,19 +5,76 @@ from portalapi.data.trello_data import add_trellodata
 from portalapi.flask_config import Config
 from portalapi.oauth import blueprint
 from flask_dance.contrib.github import github
+from flask import current_app
+from flask import has_request_context, request
 from werkzeug.middleware.proxy_fix import ProxyFix
 from portalapi.data.mongo_data import _mock_collection, add_mongodata, apirequest, get_items, get_post_collection
 from portalapi.view_model import viewmodel
+from loggly.handlers import HTTPSHandler
+import logging
+from logging.handlers import RotatingFileHandler
+from logging import Formatter
 
 from functools import wraps
 
 import os
+
+class RequestFormatter(logging.Formatter):
+    def format(self, record):
+        if has_request_context():
+            record.url = request.url
+            record.remote_addr = request.remote_addr
+            record.method = request.method
+            record.path = request.path
+        else:
+            record.url = record.remote_addr = record.method = record.path = "-"
+        return super().format(record)
+    
+def configure_logging(app):
+    log_level = app.config.get("LOGS_LEVEL", logging.INFO)
+
+    # Clear existing handlers
+    for handler in app.logger.handlers[:]:
+        app.logger.removeHandler(handler)
+
+    app.logger.setLevel(log_level)
+    formatter = RequestFormatter(
+        '[%(asctime)s] %(levelname)s in %(module)s: %(message)s '
+        '[%(method)s %(path)s from %(remote_addr)s]'
+    )
+    
+    # Console Handler
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(log_level)
+    console_handler.setFormatter(formatter)
+    app.logger.addHandler(console_handler)
+
+    # File Handler (rotating)
+    file_handler = RotatingFileHandler('app.log', maxBytes=10240, backupCount=5)
+    file_handler.setLevel(log_level)
+    file_handler.setFormatter(formatter)
+    app.logger.addHandler(file_handler)
+
+    # Loggly Handler
+    token = app.config.get("LOGGLY_TOKEN")
+    if token:
+        loggly_handler = HTTPSHandler(f'https://logs-01.loggly.com/inputs/{token}/tag/portalapiapp')
+        loggly_handler.setFormatter(formatter)
+        loggly_handler.setLevel(log_level)
+        app.logger.addHandler(loggly_handler)
+        app.logger.info("Loggly logging is enabled.")
+
+    # Final log to confirm
+    app.logger.propagate = False
+    app.logger.info('Logging has been fully configured.')
+
 
 def github_login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not github.authorized:
             print("Not Authorised")
+            current_app.logger.info("Login Failure - Unauthorised.")
             return redirect(url_for("github.login"))
         return f(*args, **kwargs)
     return decorated_function
@@ -29,7 +86,33 @@ def create_app():
     app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
     app.config.from_object(Config())
 
+#    app.logger.setLevel(app.config['LOGS_LEVEL'])
+#    app.logger.info("Log Level - %s", app.config['LOGS_LEVEL'])
+#    app.logger.info("Loggly token - %s", app.config['LOGGLY_TOKEN'])
+
+    configure_logging(app)
+
+    @app.before_request
+    def log_request_info():
+        current_app.logger.info("Incoming request")
+#        current_app.logger.info(
+#            f"Incoming request: {request.method} {request.path} from {request.remote_addr}"
+#        )
+
+    if app.config['LOGGLY_TOKEN'] is not None:
+        handler = HTTPSHandler(f'https://logs-01.loggly.com/inputs/{app.config["LOGGLY_TOKEN"]}/tag/portalapiapp')
+        handler.setFormatter(
+            Formatter("[%(asctime)s] %(levelname)s in %(module)s: %(message)s")
+        )
+        app.logger.addHandler(handler)
+        app.logger.info("Logged in User - %s", os.getlogin())
+
     app.register_blueprint(blueprint, url_prefix="/login")
+
+    @app.errorhandler(Exception)
+    def handle_exception(e):
+        app.logger.exception("Unhandled exception occurred:")
+        return render_template("error.html", message="An unexpected error occurred."), 500
 
     @app.route('/')
     @github_login_required
