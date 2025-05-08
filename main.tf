@@ -119,8 +119,11 @@ resource "azurerm_kubernetes_cluster" "main" {
 
   default_node_pool {
     name       = "nodepool1"
-    node_count = 2
-    vm_size    = "Standard_l8s_v3"
+    node_count = 1
+    vm_size    = "standard_l8s_v3"
+    auto_scaling_enabled = "true"
+    max_count  = 5
+    min_count  = 1
   }
 
   identity {
@@ -130,7 +133,6 @@ resource "azurerm_kubernetes_cluster" "main" {
   lifecycle {
     ignore_changes = [
       linux_profile,
-      default_node_pool[0].node_count  # In case autoscaling modifies it
     ]
   }
 
@@ -139,8 +141,3 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 }
 
-resource "azurerm_role_assignment" "aks_acr" {
-  scope                = data.azurerm_container_registry.acr.id
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_kubernetes_cluster.main.kubelet_identity[0].client_id
-}
