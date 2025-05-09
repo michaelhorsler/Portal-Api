@@ -2,6 +2,8 @@ from flask import Flask, jsonify, redirect, render_template, request, url_for, s
 from mongomock import ObjectId
 import requests
 import getpass
+import json
+from datetime import datetime
 
 from portalapi.data.trello_data import add_trellodata
 from portalapi.flask_config import Config
@@ -33,7 +35,37 @@ class RequestFormatter(Formatter):
         else:
             record.url = record.remote_addr = record.method = record.path = "-"
         return super().format(record)
+    
+class JSONFormatter(logging.Formatter):
+    def format(self, record):
+        log_record = {
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "level": record.levelname,
+            "message": record.getMessage(),
+            "logger": record.name,
+            "status": getattr(record, "status", None),
+            "component": getattr(record, "component", "portalapi"),
+            "path": getattr(record, "pathname", None),
+            "function": getattr(record, "funcName", None),
+        }
 
+        if has_request_context():
+            log_record.update({
+                "url": request.url,
+                "remote_addr": request.remote_addr,
+                "method": request.method,
+                "route": request.path,
+            })
+        else:
+            log_record.update({
+                "url": "-",
+                "remote_addr": "-",
+                "method": "-",
+                "route": "-",
+            })
+
+        return json.dumps(log_record)
+    
 class SlackHandler(logging.Handler):
     def __init__(self, webhook_url):
         super().__init__()
@@ -54,7 +86,7 @@ def configure_logging(app):
         app.logger.removeHandler(handler)
 
     app.logger.setLevel(log_level)
-    formatter = RequestFormatter(
+    formatter = JSONFormatter(
         '[%(asctime)s] %(levelname)s in %(module)s: %(message)s '
         '[%(method)s %(path)s from %(remote_addr)s]'
     )
@@ -72,7 +104,11 @@ def configure_logging(app):
         loggly_handler.setFormatter(formatter)
         loggly_handler.setLevel(log_level)
         app.logger.addHandler(loggly_handler)
-        app.logger.info("Loggly logging is enabled.")
+        app.logger.info(
+            "Loggly logging is enabled.",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        app.logger.info("Loggly logging is enabled.")
     else:
         print("No Loggly token found. Skipping Loggly handler setup.")
 
@@ -87,7 +123,11 @@ def configure_logging(app):
     error_file_handler.setLevel(logging.ERROR)
     error_file_handler.setFormatter(formatter)
     app.logger.addHandler(error_file_handler)
-    app.logger.info("Error file logging is enabled.")
+    app.logger.info(
+        "Error file logging is enabled.",
+        extra={"status": "RECOVERY", "component": "portalapi"}
+    )
+#    app.logger.info("Error file logging is enabled.")
 
     # Email for critical errors
     if app.config.get("MAIL_SERVER"):
@@ -108,7 +148,11 @@ def configure_logging(app):
         mail_handler.setLevel(logging.ERROR)
         mail_handler.setFormatter(formatter)
         app.logger.addHandler(mail_handler)
-        app.logger.info("Email error handler attached.")
+        app.logger.info(
+            "Email error handler attached.",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        app.logger.info("Email error handler attached.")
 
     # Slack for critical errors
     webhook = app.config.get("SLACK_WEBHOOK_URL")
@@ -117,11 +161,19 @@ def configure_logging(app):
         slack_handler.setLevel(logging.ERROR)
         slack_handler.setFormatter(formatter)
         app.logger.addHandler(slack_handler)
-        app.logger.info("Slack error handler attached.")
+        app.logger.info(
+            "Slack error handler attached.",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        app.logger.info("Slack error handler attached.")
 
     # Final log to confirm
     app.logger.propagate = False
-    app.logger.info('Logging has been fully configured.')
+    app.logger.info(
+        "Logging has been fully configured.",
+        extra={"status": "RECOVERY", "component": "portalapi"}
+    )
+#    app.logger.info('Logging has been fully configured.')
 
     # Ensure handler is flushed and closed at shutdown
     def shutdown_logging():
@@ -138,7 +190,11 @@ def github_login_required(f):
     def decorated_function(*args, **kwargs):
         if not github.authorized:
             print("Not Authorised")
-            current_app.logger.info("Login Failure - Unauthorised.")
+            current_app.logger.info(
+                "Login Failure - Unauthorised.",
+                extra={"status": "RECOVERY", "component": "portalapi"}
+            )
+#            current_app.logger.info("Login Failure - Unauthorised.")
             return redirect(url_for("github.login"))
         return f(*args, **kwargs)
     return decorated_function
@@ -156,20 +212,32 @@ def create_app():
     def log_request_info():
         if request.path.startswith('/static/') or request.path.endswith(('.png', '.jpg', '.jpeg', '.ico', '.gif', '.css', '.js')):
             return  # Skip logging static/image requests
-        current_app.logger.info("Incoming request")
+        current_app.logger.info(
+            "Incoming request",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        current_app.logger.info("Incoming request")
 
     if not os.getenv("PYTEST_CURRENT_TEST"):
         try:
             user = getpass.getuser()
         except Exception:
             user = "unknown"
-        app.logger.info("Logged in User - %s", user)
+        app.logger.info(
+            "Logged in User - %s", user",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        app.logger.info("Logged in User - %s", user)
     app.register_blueprint(blueprint, url_prefix="/login")
 
     @app.errorhandler(Exception)
     def handle_exception(e):
 #        app.logger.exception("Unhandled exception occurred:")
-        app.logger.error("Unhandled exception occurred")
+        app.logger.error(
+            "Unhandled exception occurred.",
+            extra={"status": "FAILURE", "component": "portalapi"}
+        )
+#        app.logger.error("FAILURE | portalapi | Unhandled exception occurred")
         return render_template("error.html", message="An unexpected error occurred."), 500
 
     @app.route('/')
@@ -180,7 +248,11 @@ def create_app():
             item_view_model = viewmodel(items)
         except Exception as e:
             # Handle the MongoDB connection failure
-            app.logger.error("Mongodb connection error")
+            app.logger.error(
+                "MongoDB connection error on index route.",
+                extra={"status": "FAILURE", "component": "portalapi"}
+            )
+#            app.logger.error("FAILURE | portalapi | MongoDB connection error on index route.")
             return render_template('error.html', message="MongoDB connection failed: " + str(e)), 500
 
         user = None
@@ -194,7 +266,11 @@ def create_app():
         if not items:  # Check if the items list is empty
             message = "No posts available"
            
-        app.logger.info('Homepage rendered')
+        app.logger.info(
+            "Homepage rendered with posts.",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        app.logger.info("RECOVERY | portalapi | Homepage rendered with posts.")
         return render_template('index.html', view_model=item_view_model, user=user, message=message)
 
    #     return render_template('index.html', view_model=item_view_model, user=user)
@@ -206,7 +282,11 @@ def create_app():
         try:
             add_trellodata()
         except Exception as e:
-            app.logger.error("Error adding entry.")
+            app.logger.error(
+                "Error adding Trello entry.",
+                extra={"status": "FAILURE", "component": "portalapi"}
+            )
+#            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
         return redirect(url_for('index'))
 
     @app.route('/api')
@@ -217,13 +297,25 @@ def create_app():
         engineer = request.args.get('engineer', default='*', type=str)
         try:
             add_mongodata(customer, salesorder, engineer)
-            app.logger.info("Entry Added")
+            app.logger.info(
+                "Trello and MongoDB entry added successfully.",
+                extra={"status": "RECOVERY", "component": "portalapi"}
+            )
+#            app.logger.info("RECOVERY | portalapi | Trello and MongoDB entry added successfully.")
         except Exception as e:
-            app.logger.error("Error writing to Mongodb.")
+            app.logger.error(
+                "Error writing to MongoDb.",
+                extra={"status": "FAILURE", "component": "portalapi"}
+            )
+#            app.logger.error("FAILURE | portalapi | Error writing to MongoDb.")
         try:
             add_trellodata(customer, salesorder, engineer)
         except Exception as e:
-            app.logger.error("Error writing to Trello.")
+            app.logger.error(
+                "Error adding Trello entry.",
+                extra={"status": "FAILURE", "component": "portalapi"}
+            )
+#            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
         return redirect(url_for('index'))
             
     @app.route('/posts/<post_id>', methods=['DELETE'])
@@ -232,11 +324,19 @@ def create_app():
             posts = get_post_collection()
             result = posts.delete_one({"_id": ObjectId(post_id)})
             if result.deleted_count == 0:
-                app.logger.error("Error on delete. Post not found.")
+                app.logger.error(
+                    f"Error deleting post not found, with id: {post_id}.",
+                    extra={"status": "FAILURE", "component": "portalapi"}
+                )
+#                app.logger.error(f"FAILURE | portalapi | Error deleting post not found, with id: {post_id}")
                 return jsonify({"message": "Post not found"}), 404
             return jsonify({"message": "Post deleted successfully"}), 200
         except Exception as e:
-            app.logger.error("Error deleting entry.")
+            app.logger.error(
+                f"Error deleting post with id: {post_id}.",
+                extra={"status": "FAILURE", "component": "portalapi"}
+            )
+    #        app.logger.error(f"FAILURE | portalapi | Error deleting post with id: {post_id}")
             return jsonify({"message": str(e)}), 500
     
     @app.route('/login')
@@ -248,7 +348,11 @@ def create_app():
     def logout():
         token = github.blueprint.token["access_token"]
         del github.blueprint.token  # clear session
-        app.logger.info(f"User logged out -  {token}")
+        app.logger.info(
+            f"User logged out -  {token}",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        app.logger.info(f"User logged out -  {token}")
         print(f"User logged out: {token}")
         return redirect(url_for("index"))
 
@@ -256,7 +360,11 @@ def create_app():
     @app.route('/hpa')
     def hpa_loading():
         sum(i*i for i in range(10000000))
-        app.logger.info("Test Horizontal Pod Autoscaling.")
+        app.logger.info(
+            "Test Horizontal Pod Autoscaling.",
+            extra={"status": "RECOVERY", "component": "portalapi"}
+        )
+#        app.logger.info("Test Horizontal Pod Autoscaling.")
         return redirect(url_for("index"))
     
     @app.route('/fail')
