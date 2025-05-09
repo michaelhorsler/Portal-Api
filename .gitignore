@@ -129,4 +129,8 @@ terraform.tfvars
 secrets.tfvars
 .tfvars
 
+### log files
+*.log
+*.log.*
+
 README PROJECT.md

@@ -10,3 +10,5 @@ Dockerfile
 .terraform
 terraform.tfvars
 .terraform.lock.hcl
+*.log
+*.log.*

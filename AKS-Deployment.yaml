@@ -126,6 +126,65 @@ spec:
               secretKeyRef:
                 name: portalapisecret
                 key: TRELLO_TODO_LIST_ID
+          - name: LOGS_LEVEL
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: LOGS_LEVEL
+          - name: LOGGLY_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: LOGGLY_TOKEN
+          - name: MAIL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: MAIL_USERNAME
+          - name: MAIL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: MAIL_PASSWORD
+          - name: MAIL_USE_TLS
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: MAIL_USE_TLS
+          - name: MAIL_SERVER
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: MAIL_SERVER
+          - name: MAIL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: MAIL_PORT
+          - name: MAIL_DEFAULT_SENDER
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: MAIL_DEFAULT_SENDER
+          - name: MAIL_ADMINS
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: MAIL_ADMINS
+          - name: SLACK_WEBHOOK_URL
+            valueFrom:
+              secretKeyRef:
+                name: portalapisecret
+                key: SLACK_WEBHOOK_URL
+
+
+
+
+
+
+
+
+
 
 
 
