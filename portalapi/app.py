@@ -224,7 +224,7 @@ def create_app():
         except Exception:
             user = "unknown"
         app.logger.info(
-            "Logged in User - %s", user",
+            f"Logged in User - {user}",
             extra={"status": "RECOVERY", "component": "portalapi"}
         )
 #        app.logger.info("Logged in User - %s", user)
