@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, redirect, render_template, request, url_for, session
 from mongomock import ObjectId
 import requests
+import getpass
 
 from portalapi.data.trello_data import add_trellodata
 from portalapi.flask_config import Config
@@ -157,7 +158,12 @@ def create_app():
             return  # Skip logging static/image requests
         current_app.logger.info("Incoming request")
 
-    app.logger.info("Logged in User - %s", os.getlogin())
+    if not os.getenv("PYTEST_CURRENT_TEST"):
+        try:
+            user = getpass.getuser()
+        except Exception:
+            user = "unknown"
+        app.logger.info("Logged in User - %s", user)
     app.register_blueprint(blueprint, url_prefix="/login")
 
     @app.errorhandler(Exception)
