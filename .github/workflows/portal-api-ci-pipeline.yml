@@ -102,8 +102,18 @@ jobs:
             TF_VAR_TRELLO_API_TOKEN: ${{ secrets.TF_VAR_TRELLO_API_TOKEN }}
             TF_VAR_TRELLO_API_SECRET: ${{ secrets.TF_VAR_TRELLO_API_SECRET }}
             TF_VAR_TRELLO_TODO_LIST_ID: ${{ secrets.TF_VAR_TRELLO_TODO_LIST_ID }}
+            TF_VAR_LOGS_LEVEL: ${{ secrets.TF_VAR_LOGS_LEVEL }}
+            TF_VAR_LOGGLY_TOKEN: ${{ secrets.TF_VAR_LOGGLY_TOKEN }}
+            TF_VAR_LOGGLY_QUERY_TOKEN: ${{ secrets.TF_VAR_LOGGLY_QUERY_TOKEN }}
+            TF_VAR_MAIL_USERNAME: ${{ secrets.TF_VAR_MAIL_USERNAME }}
+            TF_VAR_MAIL_PASSWORD: ${{ secrets.TF_VAR_MAIL_PASSWORD }}
+            TF_VAR_MAIL_USE_TLS: ${{ secrets.TF_VAR_MAIL_USE_TLS }}
+            TF_VAR_MAIL_SERVER: ${{ secrets.TF_VAR_MAIL_SERVER }}
+            TF_VAR_MAIL_PORT: ${{ secrets.TF_VAR_MAIL_PORT }}
+            TF_VAR_MAIL_DEFAULT_SENDER: ${{ secrets.TF_VAR_MAIL_DEFAULT_SENDER }}
+            TF_VAR_MAIL_ADMINS: ${{ secrets.TF_VAR_MAIL_ADMINS }}
+            TF_VAR_SLACK_WEBHOOK_URL: ${{ secrets.TF_VAR_SLACK_WEBHOOK_URL }}
         - run: curl -dH -X POST "$(terraform output -raw webhook_url)"
-
 
 # Login and Deploy to Azure Kubernetes Cluster
         - name: Set AKS context
