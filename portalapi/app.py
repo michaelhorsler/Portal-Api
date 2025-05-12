@@ -22,7 +22,7 @@ from logging.handlers import RotatingFileHandler, SMTPHandler
 from logging import Formatter
 
 from functools import wraps
-
+from portalapi.feature_flags import is_feature_enabled
 import os
 
 class RequestFormatter(Formatter):
@@ -275,19 +275,20 @@ def create_app():
 
    #     return render_template('index.html', view_model=item_view_model, user=user)
 
-    @app.route('/add-data', methods=["POST"])
-    @github_login_required
-    def add_data():
-  #      add_mongodata()
-        try:
-            add_trellodata()
-        except Exception as e:
-            app.logger.error(
-                "Error adding Trello entry.",
-                extra={"status": "FAILURE", "component": "portalapi"}
-            )
-#            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
-        return redirect(url_for('index'))
+    if Config.FEATURE_FLAGS.get("ENABLE_ADD_DATA", False):
+        @app.route('/add-data', methods=["POST"])
+        @github_login_required
+        def add_data():
+    #      add_mongodata()
+            try:
+                add_trellodata()
+            except Exception as e:
+                app.logger.error(
+                    "Error adding Trello entry.",
+                    extra={"status": "FAILURE", "component": "portalapi"}
+                )
+    #            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
+            return redirect(url_for('index'))
 
     @app.route('/api')
     @github_login_required
@@ -298,7 +299,7 @@ def create_app():
         try:
             add_mongodata(customer, salesorder, engineer)
             app.logger.info(
-                "Trello and MongoDB entry added successfully.",
+                "MongoDB entry added successfully.",
                 extra={"status": "RECOVERY", "component": "portalapi"}
             )
 #            app.logger.info("RECOVERY | portalapi | Trello and MongoDB entry added successfully.")
@@ -308,36 +309,42 @@ def create_app():
                 extra={"status": "FAILURE", "component": "portalapi"}
             )
 #            app.logger.error("FAILURE | portalapi | Error writing to MongoDb.")
-        try:
-            add_trellodata(customer, salesorder, engineer)
-        except Exception as e:
-            app.logger.error(
-                "Error adding Trello entry.",
-                extra={"status": "FAILURE", "component": "portalapi"}
-            )
-#            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
-        return redirect(url_for('index'))
-            
-    @app.route('/posts/<post_id>', methods=['DELETE'])
-    def delete_post(post_id):
-        try:
-            posts = get_post_collection()
-            result = posts.delete_one({"_id": ObjectId(post_id)})
-            if result.deleted_count == 0:
+        if Config.FEATURE_FLAGS.get("ENABLE_TRELLO_SYNC", False):
+            try:
+                add_trellodata(customer, salesorder, engineer)
+                app.logger.info(
+                    "Trello entry added successfully.",
+                    extra={"status": "RECOVERY", "component": "portalapi"}
+                )
+            except Exception as e:
                 app.logger.error(
-                    f"Error deleting post not found, with id: {post_id}.",
+                    "Error adding Trello entry.",
                     extra={"status": "FAILURE", "component": "portalapi"}
                 )
-#                app.logger.error(f"FAILURE | portalapi | Error deleting post not found, with id: {post_id}")
-                return jsonify({"message": "Post not found"}), 404
-            return jsonify({"message": "Post deleted successfully"}), 200
-        except Exception as e:
-            app.logger.error(
-                f"Error deleting post with id: {post_id}.",
-                extra={"status": "FAILURE", "component": "portalapi"}
-            )
-    #        app.logger.error(f"FAILURE | portalapi | Error deleting post with id: {post_id}")
-            return jsonify({"message": str(e)}), 500
+    #            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
+        return redirect(url_for('index'))
+            
+    if Config.FEATURE_FLAGS.get("DELETE_POST", False):
+        @app.route('/posts/<post_id>', methods=['DELETE'])
+        def delete_post(post_id):
+            try:
+                posts = get_post_collection()
+                result = posts.delete_one({"_id": ObjectId(post_id)})
+                if result.deleted_count == 0:
+                    app.logger.error(
+                        f"Error deleting post not found, with id: {post_id}.",
+                        extra={"status": "FAILURE", "component": "portalapi"}
+                    )
+    #                app.logger.error(f"FAILURE | portalapi | Error deleting post not found, with id: {post_id}")
+                    return jsonify({"message": "Post not found"}), 404
+                return jsonify({"message": "Post deleted successfully"}), 200
+            except Exception as e:
+                app.logger.error(
+                    f"Error deleting post with id: {post_id}.",
+                    extra={"status": "FAILURE", "component": "portalapi"}
+                )
+        #        app.logger.error(f"FAILURE | portalapi | Error deleting post with id: {post_id}")
+                return jsonify({"message": str(e)}), 500
     
     @app.route('/login')
     @github_login_required
@@ -356,17 +363,17 @@ def create_app():
         print(f"User logged out: {token}")
         return redirect(url_for("index"))
 
-
-    @app.route('/hpa')
-    def hpa_loading():
-        sum(i*i for i in range(10000000))
-        app.logger.info(
-            "Test Horizontal Pod Autoscaling.",
-            extra={"status": "RECOVERY", "component": "portalapi"}
-        )
-#        app.logger.info("Test Horizontal Pod Autoscaling.")
-        return redirect(url_for("index"))
-    
+    if not Config.FEATURE_FLAGS.get("ENABLE_HPA_ROUTE", False):
+        @app.route('/hpa')
+        def hpa_loading():
+            sum(i*i for i in range(10000000))
+            app.logger.info(
+                "Test Horizontal Pod Autoscaling.",
+                extra={"status": "RECOVERY", "component": "portalapi"}
+            )
+    #        app.logger.info("Test Horizontal Pod Autoscaling.")
+            return redirect(url_for("index"))
+        
     @app.route('/fail')
     def fail():
         raise RuntimeError("Deliberate crash to test logging.")

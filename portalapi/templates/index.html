@@ -3,6 +3,8 @@
 
 {% block content %}
   <div class="Alpha_Typ" id="titlebar">
+  <table>
+  <tr><td><img width="10" height="2" src="static/images/blank.gif"></td><td>
     <h1 class="display-4">Portal Api App</h1>
     <p class="lead">Portal Api app - Running on AKS Cluster.</p>
 
@@ -11,20 +13,24 @@
     {% else %}
       <a class="btn btn-primary" href="/login">Login with GitHub</a>
     {% endif %}
+  </td></tr>
+  </table>
+
   </div>
   <div class="Alpha_Typ" id="input">
-  <form action="add-data" method="post">
-    <label for="name">Post to Trello: </label>
-    <input type="submit" value="Submit Test Data" />
-  </form>
-
+  <br>
+  <table>
+  <tr><td><img width="10" height="2" src="static/images/blank.gif"></td><td>
   <form action="api?customer=c&salesorder=b&engineer=d">
-    <label for="name">API Call: </label>
+    <label for="name">API Call: </label> <br>
     Customer:<input type="text" name="customer" />
     Sales Order:<input type="text" name="salesorder" />
     Engineer:<input type="text" name="engineer" />
     <input type="submit" value="Test API Call" />
   </form>
+  </td></tr>
+  </table>
+  <br>
 </div>
 <div class="Alpha_Typ" id="output">
   <div class="row">
@@ -36,9 +42,13 @@
           <p>{{ message }}</p>  <!-- Display the message when items are empty -->
         {% else %}
         <!-- Render items if available -->
+         <table>
+          <tr><td><img width="10" height="2" src="static/images/blank.gif"></td><td>
           {% for item in view_model.items %}
             <li>{{ item.customer }} - {{ item.sales_order }} - {{ item.engineer }}</li>
           {% endfor %}
+          </td></tr>
+         </table>
         {% endif %}
       </ul>
     </div>

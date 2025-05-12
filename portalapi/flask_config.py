@@ -15,3 +15,10 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     MAIL_USE_TLS = os.environ.get("MAIL_USE_TLS")
     SLACK_WEBHOOK_URL = os.environ.get("SLACK_WEBHOOK_URL")
+
+    FEATURE_FLAGS = {
+    "ENABLE_ADD_DATA": False,
+    "ENABLE_TRELLO_SYNC": True,
+    "ENABLE_HPA_ROUTE": True,
+    "ENABLE_DELETE_POST": True,
+    }
