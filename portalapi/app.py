@@ -108,7 +108,6 @@ def configure_logging(app):
             "Loggly logging is enabled.",
             extra={"status": "RECOVERY", "component": "portalapi"}
         )
-#        app.logger.info("Loggly logging is enabled.")
     else:
         print("No Loggly token found. Skipping Loggly handler setup.")
 
@@ -127,12 +126,10 @@ def configure_logging(app):
         "Error file logging is enabled.",
         extra={"status": "RECOVERY", "component": "portalapi"}
     )
-#    app.logger.info("Error file logging is enabled.")
 
     # Email for critical errors
     if app.config.get("MAIL_SERVER"):
         auth = None
-        print("here")
         if app.config.get("MAIL_USERNAME") and app.config.get("MAIL_PASSWORD"):
             auth = (app.config["MAIL_USERNAME"], app.config["MAIL_PASSWORD"])
         secure = () if app.config.get("MAIL_USE_TLS") else None
@@ -152,7 +149,6 @@ def configure_logging(app):
             "Email error handler attached.",
             extra={"status": "RECOVERY", "component": "portalapi"}
         )
-#        app.logger.info("Email error handler attached.")
 
     # Slack for critical errors
     webhook = app.config.get("SLACK_WEBHOOK_URL")
@@ -194,7 +190,6 @@ def github_login_required(f):
                 "Login Failure - Unauthorised.",
                 extra={"status": "RECOVERY", "component": "portalapi"}
             )
-#            current_app.logger.info("Login Failure - Unauthorised.")
             return redirect(url_for("github.login"))
         return f(*args, **kwargs)
     return decorated_function
@@ -216,7 +211,6 @@ def create_app():
             "Incoming request",
             extra={"status": "RECOVERY", "component": "portalapi"}
         )
-#        current_app.logger.info("Incoming request")
 
     if not os.getenv("PYTEST_CURRENT_TEST"):
         try:
@@ -227,17 +221,14 @@ def create_app():
             f"Logged in User - {user}",
             extra={"status": "RECOVERY", "component": "portalapi"}
         )
-#        app.logger.info("Logged in User - %s", user)
     app.register_blueprint(blueprint, url_prefix="/login")
 
     @app.errorhandler(Exception)
     def handle_exception(e):
-#        app.logger.exception("Unhandled exception occurred:")
         app.logger.error(
             "Unhandled exception occurred.",
             extra={"status": "FAILURE", "component": "portalapi"}
         )
-#        app.logger.error("FAILURE | portalapi | Unhandled exception occurred")
         return render_template("error.html", message="An unexpected error occurred."), 500
 
     @app.route('/')
@@ -252,7 +243,6 @@ def create_app():
                 "MongoDB connection error on index route.",
                 extra={"status": "FAILURE", "component": "portalapi"}
             )
-#            app.logger.error("FAILURE | portalapi | MongoDB connection error on index route.")
             return render_template('error.html', message="MongoDB connection failed: " + str(e)), 500
 
         user = None
@@ -270,10 +260,7 @@ def create_app():
             "Homepage rendered with posts.",
             extra={"status": "RECOVERY", "component": "portalapi"}
         )
-#        app.logger.info("RECOVERY | portalapi | Homepage rendered with posts.")
         return render_template('index.html', view_model=item_view_model, user=user, message=message)
-
-   #     return render_template('index.html', view_model=item_view_model, user=user)
 
     if Config.FEATURE_FLAGS.get("ENABLE_ADD_DATA", False):
         @app.route('/add-data', methods=["POST"])
@@ -287,7 +274,6 @@ def create_app():
                     "Error adding Trello entry.",
                     extra={"status": "FAILURE", "component": "portalapi"}
                 )
-    #            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
             return redirect(url_for('index'))
 
     @app.route('/api')
@@ -302,13 +288,11 @@ def create_app():
                 "MongoDB entry added successfully.",
                 extra={"status": "RECOVERY", "component": "portalapi"}
             )
-#            app.logger.info("RECOVERY | portalapi | Trello and MongoDB entry added successfully.")
         except Exception as e:
             app.logger.error(
                 "Error writing to MongoDb.",
                 extra={"status": "FAILURE", "component": "portalapi"}
             )
-#            app.logger.error("FAILURE | portalapi | Error writing to MongoDb.")
         if Config.FEATURE_FLAGS.get("ENABLE_TRELLO_SYNC", False):
             try:
                 add_trellodata(customer, salesorder, engineer)
@@ -321,7 +305,6 @@ def create_app():
                     "Error adding Trello entry.",
                     extra={"status": "FAILURE", "component": "portalapi"}
                 )
-    #            app.logger.error("FAILURE | portalapi | Error adding Trello entry.")
         return redirect(url_for('index'))
             
     if Config.FEATURE_FLAGS.get("DELETE_POST", False):
@@ -335,7 +318,6 @@ def create_app():
                         f"Error deleting post not found, with id: {post_id}.",
                         extra={"status": "FAILURE", "component": "portalapi"}
                     )
-    #                app.logger.error(f"FAILURE | portalapi | Error deleting post not found, with id: {post_id}")
                     return jsonify({"message": "Post not found"}), 404
                 return jsonify({"message": "Post deleted successfully"}), 200
             except Exception as e:
@@ -343,7 +325,6 @@ def create_app():
                     f"Error deleting post with id: {post_id}.",
                     extra={"status": "FAILURE", "component": "portalapi"}
                 )
-        #        app.logger.error(f"FAILURE | portalapi | Error deleting post with id: {post_id}")
                 return jsonify({"message": str(e)}), 500
     
     @app.route('/login')
@@ -359,7 +340,6 @@ def create_app():
             f"User logged out -  {token}",
             extra={"status": "RECOVERY", "component": "portalapi"}
         )
-#        app.logger.info(f"User logged out -  {token}")
         print(f"User logged out: {token}")
         return redirect(url_for("index"))
 
@@ -371,7 +351,6 @@ def create_app():
                 "Test Horizontal Pod Autoscaling.",
                 extra={"status": "RECOVERY", "component": "portalapi"}
             )
-    #        app.logger.info("Test Horizontal Pod Autoscaling.")
             return redirect(url_for("index"))
         
     @app.route('/fail')
