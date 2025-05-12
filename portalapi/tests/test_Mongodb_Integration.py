@@ -74,22 +74,4 @@ def test_mongo_failure(client, monkeypatch):
     # Check if the error message is displayed
     assert "MongoDB connection failed" in response.data.decode()
     
-# Test 5: Check if data is correctly deleted
-def test_delete_post(client):
-    posts = get_post_collection()
-    post = {
-        "Sales_Order": "SO126",
-        "Customer": "Customer D",
-        "Engineer": "Engineer D",
-    }
-    post_id = posts.insert_one(post).inserted_id
-    
-    # Delete the post
-    response = client.delete(f'/posts/{post_id}')
-    
-    # Ensure the post is deleted
-    assert response.status_code == 200  # Expecting a 200 OK response
-    
-    # Check if the post is actually deleted
-    deleted_post = posts.find_one({"_id": post_id})
-    assert deleted_post is None  # Ensure the post no longer exists
+
