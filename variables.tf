@@ -122,7 +122,7 @@ variable "MAIL_PORT" {
   type        = string
   sensitive   = true
 }
-variable "MAIL_DEFAULT_SENDED" {
+variable "MAIL_DEFAULT_SENDER" {
   description = "SECRET for Mail Account default sender address."
   type        = string
   sensitive   = true
