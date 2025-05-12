@@ -97,42 +97,42 @@ variable "LOGGLY_QUERY_TOKEN" {
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_MAIL_USERNAME" {
+variable "MAIL_USERNAME" {
   description = "SECRET for Mail login username"
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_MAIL_PASSWORD" {
+variable "MAIL_PASSWORD" {
   description = "SECRET for Mail login password"
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_MAIL_USE_TLS" {
+variable "MAIL_USE_TLS" {
   description = "SECRET for Mail TLS Status"
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_MAIL_SERVER" {
+variable "MAIL_SERVER" {
   description = "SECRET for Mail Server details"
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_MAIL_PORT" {
+variable "MAIL_PORT" {
   description = "SECRET for Mail Server Port Address"
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_MAIL_DEFAULT_SENDED" {
+variable "MAIL_DEFAULT_SENDED" {
   description = "SECRET for Mail Account default sender address."
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_MAIL_ADMINS" {
+variable "MAIL_ADMINS" {
   description = "SECRET for Mail Account Admin recipient addresses"
   type        = string
   sensitive   = true
 }
-variable "LOGGLY_SLACK_WEBHOOK_URL" {
+variable "SLACK_WEBHOOK_URL" {
   description = "SECRET for Slack URL Webhook"
   type        = string
   sensitive   = true
