@@ -365,4 +365,12 @@ def create_app():
             mimetype='image/vnd.microsoft.icon'
         )
 
+    @app.errorhandler(404)
+    def handle_404(e):
+        app.logger.warning(
+            f"Route not found: {request.path}",
+            extra={"status": "FAILURE", "component": "portalapi"}
+        )
+        return render_template("error.html", message="The requested route does not exist."), 404
+
     return app
