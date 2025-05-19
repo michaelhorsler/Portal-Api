@@ -404,51 +404,23 @@ Additional variables added to: AKS PortalAPiSecret, Github secrets and env for O
 
 # To-do
 
-Restrict call on homepage to last 10 mongodb items.
-Buttons to review and display logs??
+Add Ingress Controller and Secure https encryption against a domain.
 
-JIRA board created to monitor tasks and progress.
-
-Cosmos Db added to Azure under free tier. Note: public access enabled but firewall rules need configuring to allow IP access.
-
-Add Jason to Github repository to allow for pull-requests on deploying modifications. - Continuous Delivery and approved deployment.
-
-Add metrics and monitoring against Serviceplan in Azure.
-
-Add Kubernetes scaling to account for spikes in demand. Demonstrate scaling in use by way of simulated action? Temporary button within portal to provide multiple requests. View impact on Azure WebApp when it constant operation.
-
-Add Terraform to manage Infrasturcture as code. (IaC)
-
-Strip dependancies from VM. 
-
-Review KSP's to hit and update accordingly. A4D Work-Based Project evidence matrix.
-
-Generate documentation to reflect build process during build.
-
-Log hours within EPA documentation (Powerpoint docs - Page 9)
-
-Review final EPA documentation to ensure all processes are being hit and recorded as required. Evidence matrix.
-
-Generate JIRA board to highlight build requirements and milestones. Reference for documentation.
-
-Create build stories.
-
-Create acceptance criteria for project. Must have's, nice to have's. Create additional requirement for Distinction. (Report changes in 2 directions within APP. Back update Portal with assigned information?? Automated project update to save referencing time.)
-
-Create Unit and Inegration tests to suit JIRA requirements.
-
-Add Slack webhook for notifications?
+Created ingress.yaml to setup ingress service against AKS without domain.
 ```
-Slack Webhook:
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
 
-    - name: Send Github Slack message
-      id: slack
-      uses: slackapi/slack-github-action@v1.26.0
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+  --set controller.service.type=LoadBalancer
+
+kubectl get svc -n default
+
+kubectl apply -f ingress.yaml
 ```
-
-
-
-
+Get the external IP of the Ingress controller:
+```
+kubectl get svc nginx-ingress-ingress-nginx-controller
+```
+13.87.98.140
 
