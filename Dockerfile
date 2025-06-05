@@ -8,11 +8,11 @@
     WORKDIR /app
     
     # Upgrade base pip & setuptools to avoid vulnerable preinstalled versions (DL3013, DL3042)
-    RUN pip install --no-cache-dir pip==24.0 setuptools==70.0.0
+    RUN pip install --no-cache-dir pip==24.0 setuptools==78.1.1
     
     # Copy and install Python dependencies with pinned versions (DL3013, DL3042)
-    COPY requirements.txt .
-    RUN pip install --no-cache-dir -r requirements.txt
+   # COPY requirements.txt .
+   # RUN pip install --no-cache-dir -r requirements.txt
     
     # hadolint ignore=DL3008
     RUN apt-get update && apt-get install -y --no-install-recommends \
