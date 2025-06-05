@@ -36,6 +36,7 @@ jobs:
           echo "version=$latest_version" >> "$GITHUB_OUTPUT"
 
       - name: Upgrade AKS cluster control plane
+        if: steps.version.outputs.version != ''
         run: |
           az aks upgrade \
             --resource-group ${{ secrets.RESOURCE_GROUP }} \
